@@ -35,10 +35,10 @@ body {
 
 header {
   height: 90px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   background-color: #aa4d9d;
   position: relative;
-  box-shadow: 0px 5px 5px #414244;
+  box-shadow: 0px 5px 10px #414244;
 }
 
 header h1 {
@@ -59,8 +59,8 @@ header h1 span.logo {
 
 section {
   position: absolute;
-  top: 100px;
-  bottom: 50px;
+  top: 110px;
+  bottom: 40px;
   left: 0px;
   right: 0px;
 
@@ -71,46 +71,46 @@ section {
 }
 
 section div.wrapper {
-  width: 640px;
-  height: 360px;
+  width: 800px;
   margin: 0 auto;
   position: relative;
 }
 
 section img.lovebomb-person {
   position: absolute;
-  width: 250px;
+  width: 300px;
   top: 30px;
   left: 10px;
 }
 
 section div.details {
   padding-top: 70px;
-  margin-left: 350px;
+  margin-left: 375px;
 }
 
 section h2 {
   font-family: 'TrashHandRegular';
+  font-size: 40px;
   font-weight: normal;
   margin-bottom: 10px;
 }
 
 section aside {
-  font-size: 12px;
-  padding-bottom: 20px;
+  font-size: 14px;
+  padding-bottom: 30px;
 }
 
 button {
   font-family: 'BebasRegular';
   font-size: 30px;
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
   border: none;
   background-color: #aa4d9d;
   cursor: pointer;
   color: white;
-  width: 90%;
-  box-shadow: 5px 5px 5px #414244;
+  width: 80%;
+  box-shadow: 5px 5px 10px #414244;
 }
 
 button:hover {
@@ -126,6 +126,6 @@ footer {
   bottom: 0px;
   left: 0px;
   right: 0px;
-  height: 50px;
+  height: 30px;
   padding: 10px;
 }
