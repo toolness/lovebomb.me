@@ -5,15 +5,29 @@
 <header>
   <h1><span class="logo">Love Bomb</span> Builder</h1>
 </header>
-<section class="content">
+<section class="intro content">
   <div class="wrapper">
     <img src="lovebomb-person.svg" class="lovebomb-person">
     <div class="details">
       <h2>Send Your Friends A Love Bomb</h2>
       <aside>Tell your buddies that you think they rock, are awesome and deserve a big ol’ love bomb.</aside>
-      <button>Get Started</button>
+      <button id="get-started">Get Started</button>
     </div>
+  </div>
+</section>
+<section class="chooser content" style="display: none;">
+  <div class="wrapper">
+    <h2>Choose A Template</h2>
   </div>
 </section>
 <footer>Something you would write in a footer, 2011</footer>
 <script src="jquery.min.js"></script>
+<script>
+$(window).ready(function() {
+  $("#get-started").click(function() {
+    $("section.intro").addClass("transition-out");
+    $("section.chooser").addClass("transition-in").show()
+      .removeClass("transition-in");
+  });
+});
+</script>

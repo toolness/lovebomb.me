@@ -66,6 +66,21 @@ section {
   left: 0px;
   right: 0px;
   bottom: 30px;
+  -moz-transition: -moz-transform 1s;
+  -webkit-transition: -webkit-transform 1s;
+  -o-transition: -o-transform 1s;
+}
+
+section.transition-in {
+  -moz-transform: translate(100%);
+  -webkit-transform: translate(100%);
+  -o-transform: translate(100%);
+}
+
+section.transition-out {
+  -moz-transform: translate(-100%);
+  -webkit-transform: translate(-100%);
+  -o-transform: translate(-100%);
 }
 
 section div.wrapper {
