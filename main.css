@@ -1,0 +1,131 @@
+@font-face {
+    font-family: 'TrashHandRegular';
+    src: url('fonts/TrashHand-webfont.eot');
+    src: url('fonts/TrashHand-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/TrashHand-webfont.woff') format('woff'),
+         url('fonts/TrashHand-webfont.ttf') format('truetype'),
+         url('fonts/TrashHand-webfont.svg#TrashHandRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+  font-family: 'BebasRegular';
+  src: url('fonts/BEBAS___-webfont.eot');
+  src: url('fonts/BEBAS___-webfont.eot?#iefix') format('embedded-opentype'),
+       url('fonts/BEBAS___-webfont.woff') format('woff'),
+       url('fonts/BEBAS___-webfont.ttf') format('truetype'),
+       url('fonts/BEBAS___-webfont.svg#BebasRegular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html, body {
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+  color: #414244;
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  overflow: hidden;
+  background-color: #f9dee3;
+}
+
+header {
+  height: 90px;
+  margin-bottom: 10px;
+  background-color: #aa4d9d;
+  position: relative;
+  box-shadow: 0px 5px 5px #414244;
+}
+
+header h1 {
+  font-family: 'BebasRegular';
+  font-weight: normal;
+  position: absolute;
+  bottom: 15px;
+  left: 20px;
+  margin: 0px;
+}
+
+header h1 span.logo {
+  font-family: 'TrashHandRegular';
+  font-size: 50px;
+  padding-right: 10px;
+  color: white;
+}
+
+section {
+  position: absolute;
+  top: 100px;
+  bottom: 50px;
+  left: 0px;
+  right: 0px;
+
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#f9dee3), to(white));
+  background-image: -webkit-linear-gradient(top, #f9dee3, white);
+  background-image: -moz-linear-gradient(top, #f9dee3, white);  
+  background-image: -o-linear-gradient(top, #f9dee3, white);
+}
+
+section div.wrapper {
+  width: 640px;
+  height: 360px;
+  margin: 0 auto;
+  position: relative;
+}
+
+section img.lovebomb-person {
+  position: absolute;
+  width: 250px;
+  top: 30px;
+  left: 10px;
+}
+
+section div.details {
+  padding-top: 70px;
+  margin-left: 350px;
+}
+
+section h2 {
+  font-family: 'TrashHandRegular';
+  font-weight: normal;
+  margin-bottom: 10px;
+}
+
+section aside {
+  font-size: 12px;
+  padding-bottom: 20px;
+}
+
+button {
+  font-family: 'BebasRegular';
+  font-size: 30px;
+  padding: 20px;
+  border-radius: 10px;
+  border: none;
+  background-color: #aa4d9d;
+  cursor: pointer;
+  color: white;
+  width: 90%;
+  box-shadow: 5px 5px 5px #414244;
+}
+
+button:hover {
+  text-decoration: underline;
+}
+
+footer {
+  background: #414244;
+  color: #f0f0f0;
+  text-align: center;
+  position: absolute;
+  font-size: 11px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  height: 50px;
+  padding: 10px;
+}
