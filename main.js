@@ -99,7 +99,6 @@ $(window).ready(function() {
   $("section").bind("transitionend oTransitionEnd webkitTransitionEnd", function() {
     if ($(this).is(".out-on-right, .out-on-left")) {
       $(this).hide();
-      console.log("hiding " + this.id);
     } else {
       $(this).trigger("show", parseHash().arg);
     }
