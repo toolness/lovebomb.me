@@ -51,9 +51,6 @@ $(window).ready(function() {
       $(this).trigger("show", parseHash().arg);
     }
   });
-  $("#get-started").click(function() {
-    window.location.hash = "#chooser";
-  });
   $("#editor").bind("show", function(event, templateID) {
     loadTemplate(templateID);
   });

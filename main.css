@@ -114,9 +114,12 @@ section aside {
   padding-bottom: 30px;
 }
 
-button {
+a.button {
   font-family: 'BebasRegular';
   font-size: 30px;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
   padding: 10px;
   border-radius: 10px;
   border: none;
@@ -127,7 +130,7 @@ button {
   box-shadow: 5px 5px 10px #414244;
 }
 
-button:hover {
+a.button:hover {
   text-decoration: underline;
 }
 
