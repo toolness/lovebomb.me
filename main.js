@@ -15,19 +15,26 @@ function goTo(sectionID, argument) {
     return;
   if (next.hasClass("out-on-right")) {
     current.addClass("out-on-left");
-    next.show().removeClass("out-on-right");
-    next.prevAll(".out-on-right")
-      .hide().removeClass("out-on-right").addClass("out-on-left");
+    next.show();
+    setTimeout(function() {
+      next.removeClass("out-on-right");
+      next.prevAll(".out-on-right").hide()
+        .removeClass("out-on-right").addClass("out-on-left");
+      next.trigger("show", argument);
+    }, 1);
   } else {
     current.addClass("out-on-right");
-    next.show().removeClass("out-on-left");
-    next.nextAll(".out-on-left")
-      .hide().removeClass("out-on-left").addClass("out-on-right");
+    next.show();
+    setTimeout(function() {
+      next.removeClass("out-on-left");
+      next.nextAll(".out-on-left").hide()
+        .removeClass("out-on-left").addClass("out-on-right");
+      next.trigger("show", argument);
+    }, 1);
   }
-  next.trigger("show", argument);
-  //$("section").each(function() {
-  //  console.log(this.id, this.className);
-  //});
+  $("section").each(function() {
+    console.log(this.id, this.className);
+  });
 }
 
 function goToHash() {
@@ -91,6 +98,7 @@ $(window).ready(function() {
     window.location.hash = "#chooser";
   });
   $("#editor").bind("show", function(event, templateID) {
+    console.log("WHAT THE FUCK", templateID);
     loadTemplate(templateID);
   });
   goToHash();
