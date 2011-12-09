@@ -25,6 +25,7 @@ html, body {
   padding: 0px;
   height: 100%;
   color: #414244;
+  min-width: 800px;
 }
 
 body {
