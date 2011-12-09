@@ -26,7 +26,7 @@
 <section class="editor content out-on-right">
   <div id="source"></div>
   <div id="preview-holder">
-    <iframe id="preview" src="blank.html"></iframe>
+    <iframe id="preview" src="templates/blank.html"></iframe>
   </div>
 </section>
 <footer>Something you would write in a footer, 2011</footer>
@@ -36,22 +36,4 @@
 <script src="codemirror2/mode/javascript/javascript.js"></script>
 <script src="codemirror2/mode/css/css.js"></script>
 <script src="codemirror2/mode/htmlmixed/htmlmixed.js"></script>
-<script>
-$(window).ready(function() {
-  $("#get-started").click(function() {
-    $("section.intro").addClass("out-on-left");
-    //$("section.chooser").removeClass("out-on-right");
-    $("section.editor").removeClass("out-on-right");
-
-    var editor = CodeMirror(function(element) {
-      $("#source").append(element);
-    }, {
-      mode: "text/html",
-      theme: "jsbin",
-      tabMode: "indent",
-      lineWrapping: true,
-      value: "<p>blah</p>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-    });
-  }).click();
-});
-</script>
+<script src="main.js"></script>
