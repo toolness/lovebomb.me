@@ -29,23 +29,20 @@ html, body {
 
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  overflow: hidden;
-  background-color: #f9dee3;
+  background: #414244;
 }
 
 header {
-  height: 90px;
-  margin-bottom: 20px;
+  height: 100px;
   background-color: #aa4d9d;
   position: relative;
-  box-shadow: 0px 5px 10px #414244;
 }
 
 header h1 {
   font-family: 'BebasRegular';
   font-weight: normal;
   position: absolute;
-  bottom: 15px;
+  bottom: 20px;
   left: 20px;
   margin: 0px;
 }
@@ -58,12 +55,6 @@ header h1 span.logo {
 }
 
 section {
-  position: absolute;
-  top: 110px;
-  bottom: 40px;
-  left: 0px;
-  right: 0px;
-
   background-image: -webkit-gradient(linear, left top, left bottom, from(#f9dee3), to(white));
   background-image: -webkit-linear-gradient(top, #f9dee3, white);
   background-image: -moz-linear-gradient(top, #f9dee3, white);  
@@ -86,6 +77,7 @@ section img.lovebomb-person {
 section div.details {
   padding-top: 70px;
   margin-left: 375px;
+  min-height: 375px;
 }
 
 section h2 {
@@ -118,14 +110,8 @@ button:hover {
 }
 
 footer {
-  background: #414244;
   color: #f0f0f0;
   text-align: center;
-  position: absolute;
   font-size: 11px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  height: 30px;
   padding: 10px;
 }
