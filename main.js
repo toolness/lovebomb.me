@@ -8,7 +8,7 @@ function currentSection() {
   return $("section").not(".out-on-right, .out-on-left")
 }
 
-function goTo(sectionID, argument) {
+function goTo(sectionID) {
   var next = $("section" + sectionID);
   var current = currentSection();
   if (!next.length || next[0] == current[0])
@@ -20,7 +20,6 @@ function goTo(sectionID, argument) {
       next.removeClass("out-on-right");
       next.prevAll(".out-on-right").hide()
         .removeClass("out-on-right").addClass("out-on-left");
-      next.trigger("show", argument);
     }, 1);
   } else {
     current.addClass("out-on-right");
@@ -29,20 +28,23 @@ function goTo(sectionID, argument) {
       next.removeClass("out-on-left");
       next.nextAll(".out-on-left").hide()
         .removeClass("out-on-left").addClass("out-on-right");
-      next.trigger("show", argument);
     }, 1);
   }
-  //$("section").each(function() {
-  //  console.log(this.id, this.className);
-  //});
 }
 
-function goToHash() {
+function parseHash() {
   var hash = window.location.hash;
   if (hash.length < 2)
     hash = "#intro";
   var parts = hash.split('.');
-  goTo(parts[0], parts[1]);
+  return {
+    base: parts[0],
+    arg: parts[1]
+  };
+}
+
+function goToHash() {
+  goTo(parseHash().base);
 }
 
 onhashchange = goToHash;
@@ -94,6 +96,14 @@ function loadTemplate(id) {
 }
 
 $(window).ready(function() {
+  $("section").bind("transitionend oTransitionEnd webkitTransitionEnd", function() {
+    if ($(this).is(".out-on-right, .out-on-left")) {
+      $(this).hide();
+      console.log("hiding " + this.id);
+    } else {
+      $(this).trigger("show", parseHash().arg);
+    }
+  });
   $("#get-started").click(function() {
     window.location.hash = "#chooser";
   });
