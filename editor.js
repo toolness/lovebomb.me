@@ -36,16 +36,19 @@ function loadTemplate(id) {
   var templateURL = absolutifyURL('templates/' + id + '.html');
   var req = jQuery.get(templateURL, undefined, 'text');
   jQuery.when(req).done(function(data) {
-    editor = CodeMirror(function(element) {
-      $("#source").append(element);
-    }, {
-      mode: "text/html",
-      theme: "jsbin",
-      tabMode: "indent",
-      lineWrapping: true,
-      value: data,
-      onChange: schedulePreviewRefresh
-    });
+    editor.setValue(data);
     updatePreview();
   });
 }
+
+$(window).ready(function() {
+  editor = CodeMirror(function(element) {
+    $("#source").append(element);
+  }, {
+    mode: "text/html",
+    theme: "jsbin",
+    tabMode: "indent",
+    lineWrapping: true,
+    onChange: schedulePreviewRefresh
+  });
+});
