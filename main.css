@@ -71,13 +71,13 @@ section {
   -o-transition: -o-transform 1s;
 }
 
-section.transition-in {
+section.out-on-right {
   -moz-transform: translate(100%);
   -webkit-transform: translate(100%);
   -o-transform: translate(100%);
 }
 
-section.transition-out {
+section.out-on-left {
   -moz-transform: translate(-100%);
   -webkit-transform: translate(-100%);
   -o-transform: translate(-100%);

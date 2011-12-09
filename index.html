@@ -15,7 +15,7 @@
     </div>
   </div>
 </section>
-<section class="chooser content" style="display: none;">
+<section class="chooser content out-on-right">
   <div class="wrapper">
     <h2>Choose A Template</h2>
   </div>
@@ -25,9 +25,8 @@
 <script>
 $(window).ready(function() {
   $("#get-started").click(function() {
-    $("section.intro").addClass("transition-out");
-    $("section.chooser").addClass("transition-in").show()
-      .removeClass("transition-in");
+    $("section.intro").addClass("out-on-left");
+    $("section.chooser").removeClass("out-on-right");
   });
 });
 </script>
