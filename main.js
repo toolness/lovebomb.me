@@ -8,7 +8,7 @@ function currentSection() {
   return $("section").not(".out-on-right, .out-on-left")
 }
 
-function goTo(sectionID) {
+function goTo(sectionID, argument) {
   var next = $("section" + sectionID);
   var current = currentSection();
   if (!next.length || next[0] == current[0])
@@ -21,16 +21,21 @@ function goTo(sectionID) {
   } else {
     current.addClass("out-on-right");
     next.show().removeClass("out-on-left");
-    next.prevAll(".out-on-left")
+    next.nextAll(".out-on-left")
       .hide().removeClass("out-on-left").addClass("out-on-right");
   }
+  next.trigger("show", argument);
+  //$("section").each(function() {
+  //  console.log(this.id, this.className);
+  //});
 }
 
 function goToHash() {
   var hash = window.location.hash;
   if (hash.length < 2)
     hash = "#intro";
-  goTo(hash);
+  var parts = hash.split('.');
+  goTo(parts[0], parts[1]);
 }
 
 onhashchange = goToHash;
@@ -63,28 +68,30 @@ function updatePreview() {
   }
 }
 
+function loadTemplate(id) {
+  var templateURL = absolutifyURL('templates/' + id + '.html');
+  var req = jQuery.get(templateURL, undefined, 'text');
+  jQuery.when(req).done(function(data) {
+    editor = CodeMirror(function(element) {
+      $("#source").append(element);
+    }, {
+      mode: "text/html",
+      theme: "jsbin",
+      tabMode: "indent",
+      lineWrapping: true,
+      value: data,
+      onChange: schedulePreviewRefresh
+    });
+    updatePreview();
+  });
+}
+
 $(window).ready(function() {
   $("#get-started").click(function() {
-    $("section.intro").addClass("out-on-left");
-    //$("section.chooser").removeClass("out-on-right");
-    $("section.editor").removeClass("out-on-right");
-
-    var id = 'atul';
-    var templateURL = absolutifyURL('templates/' + id + '.html');
-    var req = jQuery.get(templateURL, undefined, 'text');
-    jQuery.when(req).done(function(data) {
-      editor = CodeMirror(function(element) {
-        $("#source").append(element);
-      }, {
-        mode: "text/html",
-        theme: "jsbin",
-        tabMode: "indent",
-        lineWrapping: true,
-        value: data,
-        onChange: schedulePreviewRefresh
-      });
-      updatePreview();
-    });
+    window.location.hash = "#chooser";
+  });
+  $("#editor").bind("show", function(event, templateID) {
+    loadTemplate(templateID);
   });
   goToHash();
 });
