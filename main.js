@@ -32,9 +32,9 @@ function goTo(sectionID, argument) {
       next.trigger("show", argument);
     }, 1);
   }
-  $("section").each(function() {
-    console.log(this.id, this.className);
-  });
+  //$("section").each(function() {
+  //  console.log(this.id, this.className);
+  //});
 }
 
 function goToHash() {
@@ -98,7 +98,6 @@ $(window).ready(function() {
     window.location.hash = "#chooser";
   });
   $("#editor").bind("show", function(event, templateID) {
-    console.log("WHAT THE FUCK", templateID);
     loadTemplate(templateID);
   });
   goToHash();

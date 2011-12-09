@@ -69,6 +69,7 @@ section {
   -moz-transition: -moz-transform 1s;
   -webkit-transition: -webkit-transform 1s;
   -o-transition: -o-transform 1s;
+  display: none;
 }
 
 section.out-on-right {
