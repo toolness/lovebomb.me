@@ -62,19 +62,20 @@ var Editor = (function() {
         onChange: schedulePreviewRefresh
       });
     },
-    enableRemix: function() {
-      function enableEditorRemix() {
-        function onMessage(event) {
-          window.removeEventListener('message', onMessage, false);
-          var info = JSON.parse(event.data);
-          templateURL = info.originalURL;
-          editor.setValue(info.html);
-        }
+    remix: function(url) {
+      var iframe = $('<iframe></iframe>').attr("src", url)
+        .appendTo(document.body).hide();
 
-        window.addEventListener('message', onMessage, false);
-        if (window.opener)
-          window.opener.postMessage('ping', '*');
+      function onMessage(event) {
+        if (event.source != iframe[0].contentWindow)
+          return;
+        window.removeEventListener('message', onMessage, false);
+        templateURL = url;
+        editor.setValue(event.data);
+        iframe.remove();
       }
+
+      window.addEventListener('message', onMessage, false);
     },
     getContent: function() {
       return {

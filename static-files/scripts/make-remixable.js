@@ -1,46 +1,29 @@
 (function() {
-  function openRemixWindow(url) {
-    var eventsLeft = 2;
+  var myURL = window.location.href;
+  
+  if (window.parent != window) {
+    // We're being embedded in an iframe which might be
+    // an HTML editor, so let's send them our source code.
     var req = new XMLHttpRequest();
-    var myURL = window.location.href;
-    var remixWindow;
-    
-    function maybeSendMessage() {
-      eventsLeft--;
-      if (!eventsLeft)
-        remixWindow.postMessage(JSON.stringify({
-          html: req.responseText,
-          originalURL: myURL
-        }), "*");
-    }
-    
-    function onMessage(event) {
-      if (event.source == remixWindow && event.data == 'ping') {
-        window.removeEventListener('message', onMessage, false);
-        maybeSendMessage();
-      }
-    }
-
-    window.addEventListener('message', onMessage, false);
-    remixWindow = window.open(url);
     req.open('GET', myURL);
-    req.onload = maybeSendMessage;
+    req.onload = function() {
+      window.parent.postMessage(req.responseText, "*");
+    };
     req.send(null);
   }
-
-  function onRemixLinkClick(cb) {  
+  
+  function rewriteRemixLinks() {  
     var anchors = document.getElementsByTagName('a');
     for (var i = 0; i < anchors.length; i++) {
       var anchor = anchors[i];
-      if (anchor.href.match(/#editor\.remix$/)) {
-        anchor.addEventListener('click', cb, false);
-        break;
+      var match = anchor.href.match(/(.*)#editor\.remix$/);
+      if (match) {
+        var baseURL = match[1];
+        anchor.href = baseURL + "?remix=" + escape(myURL) + 
+                      "#editor.remix";
       }
     }
   }
   
-  onRemixLinkClick(function(event) {
-    openRemixWindow(this.href);
-    event.preventDefault();
-  });
+  rewriteRemixLinks();
 })();
