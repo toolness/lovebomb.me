@@ -39,6 +39,10 @@ function loadTemplate(id) {
     templateURL = newTemplateURL;
     var req = jQuery.get(templateURL, undefined, 'text');
     jQuery.when(req).done(function(data) {
+      var findString = id + "-files/";
+      var regexp = new RegExp(findString, 'g');
+      data = data.replace(regexp, absolutifyURL("templates/" + findString));
+
       editor.setValue(data);
       updatePreview();
     });
