@@ -1,21 +1,21 @@
 @font-face {
     font-family: 'TrashHandRegular';
-    src: url('fonts/TrashHand-webfont.eot');
-    src: url('fonts/TrashHand-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/TrashHand-webfont.woff') format('woff'),
-         url('fonts/TrashHand-webfont.ttf') format('truetype'),
-         url('fonts/TrashHand-webfont.svg#TrashHandRegular') format('svg');
+    src: url('../fonts/TrashHand-webfont.eot');
+    src: url('../fonts/TrashHand-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/TrashHand-webfont.woff') format('woff'),
+         url('../fonts/TrashHand-webfont.ttf') format('truetype'),
+         url('../fonts/TrashHand-webfont.svg#TrashHandRegular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
   font-family: 'BebasRegular';
-  src: url('fonts/BEBAS___-webfont.eot');
-  src: url('fonts/BEBAS___-webfont.eot?#iefix') format('embedded-opentype'),
-       url('fonts/BEBAS___-webfont.woff') format('woff'),
-       url('fonts/BEBAS___-webfont.ttf') format('truetype'),
-       url('fonts/BEBAS___-webfont.svg#BebasRegular') format('svg');
+  src: url('../fonts/BEBAS___-webfont.eot');
+  src: url('../fonts/BEBAS___-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/BEBAS___-webfont.woff') format('woff'),
+       url('../fonts/BEBAS___-webfont.ttf') format('truetype'),
+       url('../fonts/BEBAS___-webfont.svg#BebasRegular') format('svg');
   font-weight: normal;
   font-style: normal;
 }
