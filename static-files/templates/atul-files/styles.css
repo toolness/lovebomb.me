@@ -68,6 +68,9 @@ img.lovebomb {
     line-height: 50px;
     padding: 10px;
     margin: 0px;
+  }
+
+  p, aside {
     width: 480px;
   }
   
@@ -78,8 +81,24 @@ img.lovebomb {
 }
 
 @media screen and (max-width: 800px) {
-  html {
-    -moz-transform: scale(0.66);
-    -moz-transform-origin: 10% 10%;
+  html, div.content {
+    width: 600px;
+  }
+  
+  img.lovebomb {
+    width: 225px;
+  }
+  
+  header {
+    font-size: 36px;
+  }
+
+  p {
+    font-size: 20px;
+    line-height: 36px;
+  }
+  
+  p, aside {
+    width: 360px;
   }
 }
