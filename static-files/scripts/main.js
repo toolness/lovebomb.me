@@ -67,8 +67,9 @@ $(window).ready(function() {
     }
   });
   $("#publish").click(function() {
-    publish(Editor.getContent());
+    Publish.publish(Editor.getContent());
   });
   goToHash();
   Editor.init();
+  Publish.init();
 });
