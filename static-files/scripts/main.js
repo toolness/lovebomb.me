@@ -60,5 +60,8 @@ $(window).ready(function() {
   $("#editor").bind("show", function(event, templateID) {
     loadTemplate(templateID);
   });
+  $("#publish").click(function() {
+    publish(getEditorContent());
+  });
   goToHash();
 });

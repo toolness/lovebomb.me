@@ -49,6 +49,13 @@ function loadTemplate(id) {
   }
 }
 
+function getEditorContent() {
+  return {
+    html: editor.getValue(),
+    templateURL: templateURL
+  };
+}
+
 $(window).ready(function() {
   editor = CodeMirror(function(element) {
     $("#source").append(element);

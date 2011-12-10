@@ -3,10 +3,12 @@
 <title>Love Bomb Builder</title>
 <link rel="stylesheet" href="stylesheets/main.css">
 <link rel="stylesheet" href="stylesheets/editor.css">
+<link rel="stylesheet" href="stylesheets/publish.css">
 <link rel="stylesheet" href="codemirror2/lib/codemirror.css">
 <link rel="stylesheet" href="stylesheets/jsbin-codemirror-theme.css">
 <header>
   <a href="#"><h1><span class="logo">Love Bomb</span> Builder</h1></a>
+  <button id="publish">Publish</button>
 </header>
 <section id="intro" class="out-on-right">
   <div class="wrapper">
@@ -30,6 +32,20 @@
     <iframe id="preview" src="templates/blank.html"></iframe>
   </div>
 </section>
+<div class="overlay-outer">
+  <div class="overlay-middle">
+    <div class="overlay-inner">
+      <img src="images/close-button.png" class="close">
+      <img src="images/ajax-loader.gif" class="throbber">
+      <div class="done">
+        <p>Here is the URL for your webpage that anyone can view.</p>
+        <div class="published-url">
+          <a target="_blank" href="http://foo/bar">http://foo/bar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <footer>Something you would write in a footer, 2011</footer>
 <script src="scripts/jquery.min.js"></script>
 <script src="codemirror2/lib/codemirror.js"></script>
@@ -38,4 +54,5 @@
 <script src="codemirror2/mode/css/css.js"></script>
 <script src="codemirror2/mode/htmlmixed/htmlmixed.js"></script>
 <script src="scripts/editor.js"></script>
+<script src="scripts/publish.js"></script>
 <script src="scripts/main.js"></script>
