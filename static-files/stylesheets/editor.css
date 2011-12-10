@@ -20,7 +20,18 @@ iframe#preview {
   height: 100%;
 }
 
-.CodeMirror, .CodeMirror-scroll {
-  min-height: 100%;
+div#source .CodeMirror, div#source .CodeMirror-scroll {
   height: 100%;
+}
+
+div#source .CodeMirror-gutter {
+  background-color: rgba(0, 0, 0, 0.1);
+  opacity: 0.0;
+  -moz-transition: opacity 0.25s;
+  -webkit-transition: opacity 0.25s;
+  -o-transition: opacity 0.25s;
+}
+
+div#source:hover .CodeMirror-gutter {
+  opacity: 1.0;
 }

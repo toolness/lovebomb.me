@@ -59,6 +59,7 @@ var Editor = (function() {
         theme: "jsbin",
         tabMode: "indent",
         lineWrapping: true,
+        lineNumbers: true,
         onChange: schedulePreviewRefresh
       });
     },
