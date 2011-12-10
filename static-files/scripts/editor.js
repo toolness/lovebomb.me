@@ -20,6 +20,12 @@ function updatePreview() {
     previewDocument.open();
     previewDocument.write(editor.getValue());
     previewDocument.close();
+
+    // Insert a BASE TARGET tag so that links don't open in
+    // the iframe.
+    var baseTag = previewDocument.createElement('base');
+    baseTag.setAttribute('target', '_blank');
+    previewDocument.head.appendChild(baseTag);
   }
   
   try {
