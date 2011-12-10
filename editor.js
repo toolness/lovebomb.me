@@ -6,6 +6,7 @@ function absolutifyURL(relativeURL) {
 
 var delay;
 var editor;
+var templateURL;
 var DELAY_MS = 300;
 
 function schedulePreviewRefresh() {
@@ -33,12 +34,15 @@ function updatePreview() {
 }
 
 function loadTemplate(id) {
-  var templateURL = absolutifyURL('templates/' + id + '.html');
-  var req = jQuery.get(templateURL, undefined, 'text');
-  jQuery.when(req).done(function(data) {
-    editor.setValue(data);
-    updatePreview();
-  });
+  var newTemplateURL = absolutifyURL('templates/' + id + '.html');
+  if (newTemplateURL != templateURL) {
+    templateURL = newTemplateURL;
+    var req = jQuery.get(templateURL, undefined, 'text');
+    jQuery.when(req).done(function(data) {
+      editor.setValue(data);
+      updatePreview();
+    });
+  }
 }
 
 $(window).ready(function() {

@@ -5,8 +5,12 @@ function currentSection() {
 function goTo(sectionID) {
   var next = $("section" + sectionID);
   var current = currentSection();
-  if (!next.length || next[0] == current[0])
+  if (!next.length)
     return;
+  if (next[0] == current[0]) {
+    current.trigger("transitionend");
+    return;
+  }
   if (next.hasClass("out-on-right")) {
     current.addClass("out-on-left");
     next.show();
