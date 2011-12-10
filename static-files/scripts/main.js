@@ -53,8 +53,10 @@ $(window).ready(function() {
   $("section").bind("transitionend oTransitionEnd webkitTransitionEnd", function() {
     if ($(this).is(".out-on-right, .out-on-left")) {
       $(this).hide();
+      $("header").removeClass('section-' + this.id);
     } else {
       $(this).trigger("show", parseHash().arg);
+      $("header").addClass('section-' + this.id);
     }
   });
   $("#editor").bind("show", function(event, templateID) {
