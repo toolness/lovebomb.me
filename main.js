@@ -1,3 +1,5 @@
+var WEIRD_CSS_TRANSITION_DELAY = 10;
+
 function currentSection() {
   return $("section").not(".out-on-right, .out-on-left")
 }
@@ -18,7 +20,7 @@ function goTo(sectionID) {
       next.removeClass("out-on-right");
       next.prevAll(".out-on-right").hide()
         .removeClass("out-on-right").addClass("out-on-left");
-    }, 1);
+    }, WEIRD_CSS_TRANSITION_DELAY);
   } else {
     current.addClass("out-on-right");
     next.show();
@@ -26,7 +28,7 @@ function goTo(sectionID) {
       next.removeClass("out-on-left");
       next.nextAll(".out-on-left").hide()
         .removeClass("out-on-left").addClass("out-on-right");
-    }, 1);
+    }, WEIRD_CSS_TRANSITION_DELAY);
   }
 }
 
