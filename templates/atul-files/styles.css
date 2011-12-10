@@ -76,3 +76,12 @@ img.lovebomb {
     padding: 10px;
   }
 }
+
+@media screen and (max-width: 800px) {
+  html {
+    -moz-transform: scale(0.66);
+    -moz-transform-origin: 10% 10%;
+    -webkit-transform: scale(0.66);
+    -webkit-transform-origin: 10% 10%;
+  }
+}
