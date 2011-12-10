@@ -62,6 +62,8 @@ var Editor = (function() {
         onChange: schedulePreviewRefresh
       });
     },
+    undo: function() { editor.undo(); },
+    redo: function() { editor.redo(); },
     remix: function(url) {
       var iframe = $('<iframe></iframe>').attr("src", url)
         .appendTo(document.body).hide();

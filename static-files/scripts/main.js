@@ -27,9 +27,9 @@ $(window).ready(function() {
       Editor.loadTemplate(templateID);
     }
   });
-  $("#publish").click(function() {
-    Publish.publish(Editor.getContent());
-  });
+  $("#publish").click(function() { Publish.publish(Editor.getContent()); });
+  $("#undo").click(function() { Editor.undo(); });
+  $("#redo").click(function() { Editor.redo(); });
   Navigation.init();
   Editor.init();
   Publish.init();

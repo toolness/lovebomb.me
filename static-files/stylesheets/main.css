@@ -124,22 +124,25 @@ section#intro a.button {
   background-color: #aa4d9d;
 }
 
-header.section-editor button#publish {
+header.section-editor div.editor-actions {
   opacity: 1.0;
   visibility: visible;
 }
 
-header button#publish {
+header div.editor-actions {
   position: absolute;
   right: 20px;
   top: 20px;
-  background: #414244;
-  box-shadow: none;
   opacity: 0;
   visibility: hidden;
   -moz-transition: opacity 1s;
   -webkit-transition: opacity 1s;
   -o-transition: opacity 1s;
+}
+
+header button {
+  background: #414244;
+  box-shadow: none;
 }
 
 button, a.button {
