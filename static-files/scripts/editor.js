@@ -33,17 +33,23 @@ function updatePreview() {
   }
 }
 
+function mungeTemplate(html, id) {
+  var findString = id + "-files/";
+  var regexp = new RegExp(findString, 'g');
+
+  html = html.replace(regexp, absolutifyURL("templates/" + findString));
+  html = html.replace(/http:\/\/lovebomb\.me\//g, absolutifyURL("."));
+
+  return html;
+}
+
 function loadTemplate(id) {
   var newTemplateURL = absolutifyURL('templates/' + id + '.html');
   if (newTemplateURL != templateURL) {
     templateURL = newTemplateURL;
     var req = jQuery.get(templateURL, undefined, 'text');
     jQuery.when(req).done(function(data) {
-      var findString = id + "-files/";
-      var regexp = new RegExp(findString, 'g');
-      data = data.replace(regexp, absolutifyURL("templates/" + findString));
-
-      editor.setValue(data);
+      editor.setValue(mungeTemplate(data, id));
       updatePreview();
     });
   }
