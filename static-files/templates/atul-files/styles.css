@@ -80,7 +80,7 @@ img.lovebomb {
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (min-width: 600px) and (max-width: 800px) {
   html, div.content {
     width: 600px;
   }
@@ -100,5 +100,28 @@ img.lovebomb {
   
   p, aside {
     width: 360px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  html, div.content {
+    width: 450px;
+  }
+  
+  img.lovebomb {
+    width: 168px;
+  }
+  
+  header {
+    font-size: 27px;
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 27px;
+  }
+  
+  p, aside {
+    width: 270px;
   }
 }
