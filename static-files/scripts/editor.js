@@ -68,6 +68,19 @@ function getEditorContent() {
   };
 }
 
+function enableEditorRemix() {
+  function onMessage(event) {
+    window.removeEventListener('message', onMessage, false);
+    var info = JSON.parse(event.data);
+    templateURL = info.originalURL;
+    editor.setValue(info.html);
+  }
+  
+  window.addEventListener('message', onMessage, false);
+  if (window.opener)
+    window.opener.postMessage('ping', '*');
+}
+
 $(window).ready(function() {
   editor = CodeMirror(function(element) {
     $("#source").append(element);

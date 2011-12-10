@@ -60,7 +60,11 @@ $(window).ready(function() {
     }
   });
   $("#editor").bind("show", function(event, templateID) {
-    loadTemplate(templateID);
+    if (templateID == "remix") {
+      enableEditorRemix();
+    } else {
+      loadTemplate(templateID);
+    }
   });
   $("#publish").click(function() {
     publish(getEditorContent());
