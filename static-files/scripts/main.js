@@ -61,13 +61,14 @@ $(window).ready(function() {
   });
   $("#editor").bind("show", function(event, templateID) {
     if (templateID == "remix") {
-      enableEditorRemix();
+      Editor.enableRemix();
     } else {
-      loadTemplate(templateID);
+      Editor.loadTemplate(templateID);
     }
   });
   $("#publish").click(function() {
-    publish(getEditorContent());
+    publish(Editor.getContent());
   });
   goToHash();
+  Editor.init();
 });
