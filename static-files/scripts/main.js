@@ -10,6 +10,14 @@ $(window).ready(function() {
     }
   }
 
+  function retargetLinksToNewTab() {
+    $("a").each(function() {
+      var href = $(this).attr("href");
+      if (href && href.length && href[0] != '#')
+        $(this).attr("target", "_blank");
+    });
+  }
+  
   var remixURL = getQueryVariable('remix');
   
   if (remixURL && !window.location.hash) {
@@ -18,7 +26,8 @@ $(window).ready(function() {
     // mode.
     window.location.hash = "#editor.remix";
   }
-  
+
+  retargetLinksToNewTab();  
   $("#editor").bind("navshow", function(event, templateID) {
     if (templateID == "remix") {
       if (remixURL)

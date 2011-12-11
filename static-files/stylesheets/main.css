@@ -165,13 +165,23 @@ button:hover, a.button:hover {
 
 footer {
   background: #414244;
-  color: #f0f0f0;
+  color: #a0a0a0;
   text-align: center;
   font-size: 11px;
-  padding: 10px;
+  padding-top: 8px;
+  padding-bottom: 12px;
   position: absolute;
   height: 10px;
   bottom: 0px;
   left: 0px;
   right: 0px;
+}
+
+footer a {
+  color: #e0e0e0;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
 }
