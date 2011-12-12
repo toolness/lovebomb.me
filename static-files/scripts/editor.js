@@ -26,7 +26,7 @@ var Editor = (function() {
       // the iframe.
       var baseTag = previewDocument.createElement('base');
       baseTag.setAttribute('target', '_blank');
-      previewDocument.head.appendChild(baseTag);
+      previewDocument.querySelector("head").appendChild(baseTag);
     }
 
     try {

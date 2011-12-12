@@ -9,6 +9,14 @@ var Navigation = (function() {
   function goTo(sectionID) {
     var next = $("section" + sectionID);
     var current = currentSection();
+
+    function maybeManuallyTriggerTransitionEnd() {
+      if ($("html").hasClass("no-csstransitions")) {
+        current.trigger("transitionend");
+        next.trigger("transitionend");
+      }
+    }
+    
     if (!next.length)
       return;
     if (next[0] == current[0]) {
@@ -22,6 +30,7 @@ var Navigation = (function() {
         next.removeClass("out-on-right");
         next.prevAll(".out-on-right").hide()
           .removeClass("out-on-right").addClass("out-on-left");
+        maybeManuallyTriggerTransitionEnd();
       }, WEIRD_CSS_TRANSITION_DELAY);
     } else {
       current.addClass("out-on-right");
@@ -30,6 +39,7 @@ var Navigation = (function() {
         next.removeClass("out-on-left");
         next.nextAll(".out-on-left").hide()
           .removeClass("out-on-left").addClass("out-on-right");
+        maybeManuallyTriggerTransitionEnd();
       }, WEIRD_CSS_TRANSITION_DELAY);
     }
   }
