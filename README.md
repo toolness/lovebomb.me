@@ -20,7 +20,9 @@ The [CodeMirror][] library is used for HTML editing.
 
 5. The template only needs to render properly on the latest versions of Opera, Firefox, Chrome, Safari, and Internet Explorer. Don't worry about e.g. IE8, as supporting such browsers usually means adding shims or browser-specific logic that will confuse newcomers.
 
-<!-- Links/footnotes begin here. -->
+## Development
+
+Just run `python server.py`, a trivial local webserver, and browse to http://localhost:8000.
 
   [Hackasaurus]: http://hackasaurus.org
   [interest-based learning]: http://commonspace.wordpress.com/2011/09/27/friends-and-mentors/
