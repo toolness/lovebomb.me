@@ -1,70 +1,70 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<title>Love Bomb Builder</title>
-<script src="scripts/modernizr.custom.47927.js"></script>
-<link rel="stylesheet" href="stylesheets/main.css">
-<link rel="stylesheet" href="stylesheets/editor.css">
-<link rel="stylesheet" href="stylesheets/publish.css">
-<link rel="stylesheet" href="codemirror2/lib/codemirror.css">
-<link rel="stylesheet" href="stylesheets/jsbin-codemirror-theme.css">
-</head>
-<body>
-<header>
-  <a href="#"><h1><span class="logo">Love Bomb</span> Builder</h1></a>
-  <div class="editor-actions">
-    <button id="undo">Undo</button>
-    <button id="redo">Redo</button>
-    <button id="publish">Publish</button>
-  </div>
-</header>
-<section id="intro" class="out-on-right">
-  <div class="wrapper">
-    <img src="images/lovebomb-person.svg" class="lovebomb-person">
-    <div class="details">
-      <h2>Send Your Friends A Love Bomb</h2>
-      <aside>Tell your buddies that you think they rock, are awesome and deserve a big ol’ love bomb.</aside>
-      <a href="#chooser" class="button">Get Started</a>
-    </div>
-  </div>
-</section>
-<section id="chooser" class="out-on-right">
-  <div class="wrapper">
-    <h2>Choose A Template</h2>
-    <p>Only <a href="#editor.atul">Atul's template</a> is available right now.</p>
-  </div>
-</section>
-<section id="editor" class="out-on-right">
-  <div id="source"></div>
-  <div id="preview-holder">
-    <iframe id="preview" src="templates/blank.html"></iframe>
-  </div>
-</section>
-<div class="overlay-outer">
-  <div class="overlay-middle">
-    <div class="overlay-inner">
-      <img src="images/close-button.png" class="close">
-      <img src="images/ajax-loader.gif" class="throbber">
-      <div class="done">
-        <p>Here is the URL for your webpage that anyone can view.</p>
-        <div class="published-url">
-          <a target="_blank" href="http://foo/bar">http://foo/bar</a>
+  <head>
+    <meta charset="utf-8">
+    <title>Love Bomb Builder</title>
+    <script src="scripts/modernizr.custom.47927.js"></script>
+    <link rel="stylesheet" href="stylesheets/main.css">
+    <link rel="stylesheet" href="stylesheets/editor.css">
+    <link rel="stylesheet" href="stylesheets/publish.css">
+    <link rel="stylesheet" href="codemirror2/lib/codemirror.css">
+    <link rel="stylesheet" href="stylesheets/jsbin-codemirror-theme.css">
+  </head>
+  <body>
+    <header>
+      <a href="#"><h1><span class="logo">Love Bomb</span> Builder</h1></a>
+      <div class="editor-actions">
+        <button id="undo">Undo</button>
+        <button id="redo">Redo</button>
+        <button id="publish">Publish</button>
+      </div>
+    </header>
+    <section id="intro" class="out-on-right">
+      <div class="wrapper">
+        <img src="images/lovebomb-person.svg" class="lovebomb-person">
+        <div class="details">
+          <h2>Send Your Friends A Love Bomb</h2>
+          <aside>Tell your buddies that you think they rock, are awesome and deserve a big ol’ love bomb.</aside>
+          <a href="#chooser" class="button">Get Started</a>
+        </div>
+      </div>
+    </section>
+    <section id="chooser" class="out-on-right">
+      <div class="wrapper">
+        <h2>Choose A Template</h2>
+        <p>Only <a href="#editor.atul">Atul's template</a> is available right now.</p>
+      </div>
+    </section>
+    <section id="editor" class="out-on-right">
+      <div id="source"></div>
+      <div id="preview-holder">
+        <iframe id="preview" src="templates/blank.html"></iframe>
+      </div>
+    </section>
+    <div class="overlay-outer">
+      <div class="overlay-middle">
+        <div class="overlay-inner">
+          <img src="images/close-button.png" class="close">
+          <img src="images/ajax-loader.gif" class="throbber">
+          <div class="done">
+            <p>Here is the URL for your webpage that anyone can view.</p>
+            <div class="published-url">
+              <a target="_blank" href="http://foo/bar">http://foo/bar</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
-<footer>This app is a <a href="http://hackasaurus.org/">Hackasaurus</a> experiment created by <a href="http://twitter.com/iamjessklein">@iamjessklein</a> and <a href="http://twitter.com/toolness">@toolness</a> in 2011.</footer>
-<script src="scripts/jquery.min.js"></script>
-<script src="codemirror2/lib/codemirror.js"></script>
-<script src="codemirror2/mode/xml/xml.js"></script>
-<script src="codemirror2/mode/javascript/javascript.js"></script>
-<script src="codemirror2/mode/css/css.js"></script>
-<script src="codemirror2/mode/htmlmixed/htmlmixed.js"></script>
-<script src="scripts/editor.js"></script>
-<script src="scripts/publish.js"></script>
-<script src="scripts/navigation.js"></script>
-<script src="scripts/main.js"></script>
-</body>
+    <footer>This app is a <a href="http://hackasaurus.org/">Hackasaurus</a> experiment created by <a href="http://twitter.com/iamjessklein">@iamjessklein</a> and <a href="http://twitter.com/toolness">@toolness</a> in 2011.</footer>
+    <script src="scripts/jquery.min.js"></script>
+    <script src="codemirror2/lib/codemirror.js"></script>
+    <script src="codemirror2/mode/xml/xml.js"></script>
+    <script src="codemirror2/mode/javascript/javascript.js"></script>
+    <script src="codemirror2/mode/css/css.js"></script>
+    <script src="codemirror2/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="scripts/editor.js"></script>
+    <script src="scripts/publish.js"></script>
+    <script src="scripts/navigation.js"></script>
+    <script src="scripts/main.js"></script>
+  </body>
 </html>
