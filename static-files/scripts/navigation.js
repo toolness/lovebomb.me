@@ -61,7 +61,9 @@ var Navigation = (function() {
 
   return {
     init: function() {
-      $("section").bind(TRANSITION_END_EVENTS, function() {
+      $("section").bind(TRANSITION_END_EVENTS, function(event) {
+        if (event.target != this)
+          return;
         if ($(this).is(".out-on-right, .out-on-left")) {
           $(this).hide();
           $("header").removeClass('section-' + this.id);
