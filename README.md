@@ -4,7 +4,7 @@ Like an online greeting card site, users who visit the Love Bomb Builder at [lov
 
 ## Technical Details
 
-Presently the app works on the latest versions of all major browsers: Chrome, Firefox, Internet Explorer 9, Opera, and Safari.
+Presently the app works on the latest versions of all major browsers: Chrome, Firefox, Internet Explorer, Opera, and Safari.
 
 The app consists entirely of static files and uses the [hackpub][] API to publish documents for users.
 
