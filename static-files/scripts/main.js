@@ -40,6 +40,5 @@ $(window).ready(function() {
   $("#undo").click(function() { Editor.undo(); });
   $("#redo").click(function() { Editor.redo(); });
   Navigation.init();
-  Editor.init();
   Publish.init();
 });

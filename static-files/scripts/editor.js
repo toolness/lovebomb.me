@@ -10,11 +10,6 @@ var Editor = (function() {
     return a[0].href;
   }
 
-  function schedulePreviewRefresh() {
-    clearTimeout(delay);
-    delay = setTimeout(updatePreview, DELAY_MS);
-  }
-
   function updatePreview() {
     function update() {
       var previewDocument = $("#preview").contents()[0];
@@ -50,8 +45,8 @@ var Editor = (function() {
     return html;
   }
 
-  return {
-    init: function() {
+  function getEditor() {
+    if (typeof(editor) == "undefined")
       editor = CodeMirror(function(element) {
         $("#source").append(element);
       }, {
@@ -60,11 +55,17 @@ var Editor = (function() {
         tabMode: "indent",
         lineWrapping: true,
         lineNumbers: true,
-        onChange: schedulePreviewRefresh
+        onChange: function schedulePreviewRefresh() {
+          clearTimeout(delay);
+          delay = setTimeout(updatePreview, DELAY_MS);
+        }
       });
-    },
-    undo: function() { editor.undo(); },
-    redo: function() { editor.redo(); },
+    return editor;
+  }
+  
+  return {
+    undo: function() { getEditor().undo(); },
+    redo: function() { getEditor().redo(); },
     remix: function(url) {
       var iframe = $('<iframe></iframe>').attr("src", url)
         .appendTo(document.body).hide();
@@ -74,7 +75,7 @@ var Editor = (function() {
           return;
         window.removeEventListener('message', onMessage, false);
         templateURL = url;
-        editor.setValue(event.data);
+        getEditor().setValue(event.data);
         iframe.remove();
       }
 
@@ -82,7 +83,7 @@ var Editor = (function() {
     },
     getContent: function() {
       return {
-        html: editor.getValue(),
+        html: getEditor().getValue(),
         templateURL: templateURL
       };
     },
@@ -92,7 +93,7 @@ var Editor = (function() {
         templateURL = newTemplateURL;
         var req = jQuery.get(templateURL, undefined, 'text');
         jQuery.when(req).done(function(data) {
-          editor.setValue(mungeTemplate(data, id));
+          getEditor().setValue(mungeTemplate(data, id));
           updatePreview();
         });
       }
