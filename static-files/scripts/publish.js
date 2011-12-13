@@ -52,7 +52,7 @@ var Publish = (function() {
       var html = options.html;
       var templateURL = options.templateURL;
       var hackpubURL = options.hackpubURL ||
-                       "http://hackpub.hackasaurus.org/";
+                       "http://hackpub.hackasaurus.org/buckets/lovebomb/";
       if (html.length) {
         $("div.overlay-outer").fadeIn();
         $("div.overlay-outer .throbber").fadeIn();
