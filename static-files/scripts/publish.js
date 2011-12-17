@@ -1,6 +1,19 @@
 var Publish = (function() {
   // Originally taken from https://github.com/hackasaurus/webxray/blob/master/static-files/uproot-dialog.html
 
+  var hackpubBaseURL = "http://hackpub.hackasaurus.org/";
+  var hackpubURL = hackpubBaseURL + "buckets/lovebomb/";
+  var ppxURL = "http://toolness.github.com/postmessage-proxied-xhr/";
+  
+  yepnope({
+    test: jQuery.support.cors,
+    nope: [ppxURL + 'ppx.min.js', ppxURL + 'ppx.jquery.min.js'],
+    complete: function() {
+      if (!jQuery.support.cors)
+        jQuery.proxyAjaxThroughPostMessage(hackpubBaseURL + 'ppx-server');
+    }
+  });
+  
   function DeferredTimeout(ms) {
     var deferred = jQuery.Deferred();
   
@@ -9,32 +22,13 @@ var Publish = (function() {
   }
 
   function DeferredPublish(html, originalURL, hackpubURL) {
-    var method = 'POST';
-    var url = hackpubURL + "publish";
-    var data = {
-      'html': html,
-      'original-url': originalURL
-    };
-  
-    // If we're on MSIE, use their funky way of doing things.
-    if (typeof(XDomainRequest) == "function") {
-      var deferred = new jQuery.Deferred();
-      var req = new XDomainRequest();
-      req.open(method.toLowerCase(), url);
-      req.onerror = function() {
-        deferred.reject();
-      };
-      req.onload = function() {
-        deferred.resolve([JSON.parse(req.responseText)]);
-      };
-      req.send(jQuery.param(data));
-      return deferred;
-    }
-
     return jQuery.ajax({
-      type: method,
-      url: url,
-      data: data,
+      type: 'POST',
+      url: hackpubURL + "publish",
+      data: {
+        'html': html,
+        'original-url': originalURL
+      },
       crossDomain: true,
       dataType: 'json'
     });
@@ -51,8 +45,6 @@ var Publish = (function() {
     publish: function(options) {
       var html = options.html;
       var templateURL = options.templateURL;
-      var hackpubURL = options.hackpubURL ||
-                       "http://hackpub.hackasaurus.org/buckets/lovebomb/";
       if (html.length) {
         $("div.overlay-outer").fadeIn();
         $("div.overlay-outer .throbber").fadeIn();
