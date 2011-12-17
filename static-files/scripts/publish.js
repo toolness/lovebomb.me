@@ -1,8 +1,7 @@
 var Publish = (function() {
   // Originally taken from https://github.com/hackasaurus/webxray/blob/master/static-files/uproot-dialog.html
 
-  var hackpubBaseURL = "http://hackpub.hackasaurus.org/";
-  var hackpubURL = hackpubBaseURL + "buckets/lovebomb/";
+  var hackpubURL = "http://hackpub.hackasaurus.org/buckets/lovebomb/";
   var ppxURL = "http://toolness.github.com/postmessage-proxied-xhr/";
   
   yepnope({
@@ -10,7 +9,7 @@ var Publish = (function() {
     nope: [ppxURL + 'ppx.min.js', ppxURL + 'ppx.jquery.min.js'],
     complete: function() {
       if (!jQuery.support.cors)
-        jQuery.proxyAjaxThroughPostMessage(hackpubBaseURL + 'ppx-server');
+        jQuery.proxyAjaxThroughPostMessage(hackpubURL + 'ppx-server');
     }
   });
   
