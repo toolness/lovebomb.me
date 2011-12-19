@@ -126,6 +126,51 @@ section#intro a.button {
   background-color: #aa4d9d;
 }
 
+section#chooser .templates {
+  padding-top: 20px;
+  width: 700px;
+  margin: 0 auto;
+}
+
+section#chooser .template {
+  position: relative;
+  width: 320px;
+  height: 240px;
+  border: 1px solid #414244;
+  display: inline-block;
+  margin-left: 50px;
+}
+
+section#chooser div.template:first-child {
+  margin-left: 0px;
+}
+
+section#chooser .template iframe {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: none;
+}
+
+section#chooser .template .iframe-curtain {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background: black;
+  opacity: 0.3;
+  -moz-transition: opacity 0.5s;
+  -webkit-transition: opacity 0.5s;
+  -o-transition: opacity 0.5s;
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+}
+
+section#chooser .template div.iframe-curtain:hover {
+  opacity: 0;
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+}
+
 header.section-editor div.editor-actions {
   opacity: 1.0;
   visibility: visible;

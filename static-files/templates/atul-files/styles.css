@@ -125,3 +125,14 @@ img.lovebomb {
     width: 270px;
   }
 }
+
+@media screen and (max-width: 320px) {
+  body {
+    -moz-transform: scale(0.66);
+    -moz-transform-origin: 5% 40%;
+    -webkit-transform: scale(0.66);
+    -webkit-transform-origin: 5% 40%;
+    -o-transform: scale(0.66);
+    -o-transform-origin: 5% 40%;
+  }
+}
