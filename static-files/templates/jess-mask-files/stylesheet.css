@@ -35,7 +35,6 @@
 
 body, html {
   margin: 0 auto;
-  width: 700px;
   height: 100%;
 }
 
@@ -53,13 +52,27 @@ body {
   -webkit-text-size-adjust: none;
 }
 
+@media screen and (min-width: 800px) {
+  body, html, .container {
+    width: 700px;
+    font-size: medium;
+  }
+}
+
+@media screen and (max-width: 800px) {  
+  body, html, .container {
+    width: 500px;
+    font-size: small;
+  }
+}
+
 @media screen and (max-width: 320px) {
   body {
-    -moz-transform: scale(0.4);
-    -moz-transform-origin: 5% 20%;
-    -webkit-transform: scale(0.4);
-    -webkit-transform-origin: 5% 30%;
-    -o-transform: scale(0.4);
-    -o-transform-origin: 5% 30%;
+    -moz-transform: scale(0.6);
+    -moz-transform-origin: 7% 15%;
+    -webkit-transform: scale(0.6);
+    -webkit-transform-origin: 7% 15%;
+    -o-transform: scale(0.6);
+    -o-transform-origin: 7% 15%;
   }
 }
