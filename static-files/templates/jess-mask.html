@@ -9,18 +9,10 @@ body {
   padding: 50px;
 }
 
-.container {
-  position: absolute;
-}
-   
 a {
   /* Styles for all links */
   color: Crimson;
   text-decoration: none;
-}
-          
-img {
-  max-width: 100%; /* This stops images overlapping text */
 }
 
 h1 {
@@ -29,33 +21,39 @@ h1 {
   margin: 0px;
 }
 
-.left {
-  float: left;
-  width: 18%;
-  font-size: 30px;
-}
-
 .container {
   margin-left: auto;
   margin-right: auto;
-  width: 1000px;
+  width: 700px;
+}
+
+.left {
+  display: inline-block;
+  vertical-align: top;
+  width: 30%;
+  padding-right: 4%;
+  font-size: 30px;
+}
+
+.left img {
+  width: 100%;
 }
           
 .content-primary {
-  float: left;
-  width: 54%;
+  display: inline-block;
+  width: 26%;
   padding: 2%;
   padding-top: 0;
   background-color: white;
 }
 
 .content-secondary {
-  float: left;
-  width: 20%;
+  display: inline-block;
+  vertical-align: top;
+  width: 30%;
+  padding-left: 4%;
+  padding-top: 75px;
   font-size: 25px;
-  padding-top: 0;
-  margin-left: -300px;
-  margin-top: 90px;
 }
 
 aside {
@@ -79,7 +77,7 @@ aside a:hover {
   </div>
 
   <div class="content-primary">
-    <img src="jess-mask-files/maskguy.svg" width="172" height="324" alt="mask guy">
+    <img src="jess-mask-files/maskguy.svg" alt="mask guy">
     <aside>
       This bomb was lovingly handcrafted in HTML and CSS.
       <a href="http://lovebomb.me/#editor.remix">Remix it</a> or <a href="http://lovebomb.me/">build your own</a>.
