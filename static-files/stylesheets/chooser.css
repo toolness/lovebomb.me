@@ -7,15 +7,12 @@ section#chooser .templates {
 }
 
 section#chooser li a {
+  display: block;
   text-decoration: none;
   font-family: 'BebasRegular';
   font-size: 30px;
   line-height: 50px;
   word-spacing: 10px;
-  color: gray;
-}
-
-section#chooser li a:hover {
   color: inherit;
 }
 
@@ -25,6 +22,7 @@ section#chooser li iframe, section#chooser li .iframe-curtain {
   right: 0px;
   width: 320px;
   height: 240px;
+  display: none;
   -moz-transform: rotate(-3deg);
   -webkit-transform: rotate(-3deg);
   -o-transform: rotate(-3deg);
@@ -32,10 +30,20 @@ section#chooser li iframe, section#chooser li .iframe-curtain {
 
 section#chooser li iframe {
   border: 1px solid gray;
-  display: none;
   box-shadow: 5px 5px 5px #414244;
 }
 
-section#chooser li:hover iframe {
+section#chooser li {
+  padding-left: 10px;
+  color: gray;
+}
+
+section#chooser li.selected {
+  background: rgba(0, 0, 0, 0.1);
+  color: inherit;
+}
+
+section#chooser li.selected iframe,
+section#chooser li.selected .iframe-curtain {
   display: block;
 }
