@@ -33,6 +33,26 @@
   font-style: normal;
 }
 
+body, html {
+  margin: 0 auto;
+  width: 700px;
+  height: 100%;
+}
+
+body {
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-pack: center;
+  -moz-box-align: center;
+
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  
+  -webkit-text-size-adjust: none;
+}
+
 @media screen and (max-width: 320px) {
   body {
     -moz-transform: scale(0.45);
