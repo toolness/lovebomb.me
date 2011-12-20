@@ -130,46 +130,42 @@ section#chooser .templates {
   padding-top: 20px;
   width: 700px;
   margin: 0 auto;
-}
-
-section#chooser .template {
   position: relative;
-  width: 320px;
-  height: 240px;
-  border: 1px solid #414244;
-  display: inline-block;
-  margin-left: 50px;
+  list-style-type: none;
 }
 
-section#chooser div.template:first-child {
-  margin-left: 0px;
+section#chooser li a {
+  text-decoration: none;
+  font-family: 'BebasRegular';
+  font-size: 30px;
+  line-height: 50px;
+  word-spacing: 10px;
+  color: gray;
 }
 
-section#chooser .template iframe {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  border: none;
+section#chooser li a:hover {
+  color: inherit;
 }
 
-section#chooser .template .iframe-curtain {
+section#chooser li iframe, section#chooser li .iframe-curtain {
   position: absolute;
   top: 0px;
-  left: 0px;
   right: 0px;
-  bottom: 0px;
+  width: 320px;
+  height: 240px;
+  -moz-transform: rotate(-3deg);
+  -webkit-transform: rotate(-3deg);
+  -o-transform: rotate(-3deg);
 }
 
-section#chooser div.template {
-  -moz-transition: -moz-transform 0.5s;
-  -webkit-transition: -webkit-transform 0.5s;
-  -o-transition: -o-transform 0.5s;
+section#chooser li iframe {
+  border: 1px solid gray;
+  display: none;
+  box-shadow: 5px 5px 5px #414244;
 }
 
-section#chooser div.template:hover {
-  -moz-transform: rotate(-3deg) scale(1.2);
-  -webkit-transform: rotate(-3deg) scale(1.2);
-  -o-transform: rotate(-3deg) scale(1.2);
+section#chooser li:hover iframe {
+  display: block;
 }
 
 header.section-editor div.editor-actions {
