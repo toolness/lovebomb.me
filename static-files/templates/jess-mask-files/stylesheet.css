@@ -56,7 +56,7 @@ body {
 @media screen and (max-width: 320px) {
   body {
     -moz-transform: scale(0.4);
-    -moz-transform-origin: 5% 30%;
+    -moz-transform-origin: 5% 20%;
     -webkit-transform: scale(0.4);
     -webkit-transform-origin: 5% 30%;
     -o-transform: scale(0.4);
