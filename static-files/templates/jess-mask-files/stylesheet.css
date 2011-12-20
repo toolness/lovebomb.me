@@ -55,11 +55,11 @@ body {
 
 @media screen and (max-width: 320px) {
   body {
-    -moz-transform: scale(0.45);
-    -moz-transform-origin: -10% 0%;
-    -webkit-transform: scale(0.45);
-    -webkit-transform-origin: -10% 0%;
-    -o-transform: scale(0.45);
-    -o-transform-origin: -10% 0%;
+    -moz-transform: scale(0.4);
+    -moz-transform-origin: 5% 30%;
+    -webkit-transform: scale(0.4);
+    -webkit-transform-origin: 5% 30%;
+    -o-transform: scale(0.4);
+    -o-transform-origin: 5% 30%;
   }
 }
