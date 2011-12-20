@@ -158,17 +158,18 @@ section#chooser .template .iframe-curtain {
   left: 0px;
   right: 0px;
   bottom: 0px;
-  background: black;
-  opacity: 0.3;
-  -moz-transition: opacity 0.5s;
-  -webkit-transition: opacity 0.5s;
-  -o-transition: opacity 0.5s;
-  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
 }
 
-section#chooser .template div.iframe-curtain:hover {
-  opacity: 0;
-  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+section#chooser div.template {
+  -moz-transition: -moz-transform 0.5s;
+  -webkit-transition: -webkit-transform 0.5s;
+  -o-transition: -o-transform 0.5s;
+}
+
+section#chooser div.template:hover {
+  -moz-transform: rotate(-3deg) scale(1.2);
+  -webkit-transform: rotate(-3deg) scale(1.2);
+  -o-transform: rotate(-3deg) scale(1.2);
 }
 
 header.section-editor div.editor-actions {
