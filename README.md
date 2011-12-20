@@ -24,7 +24,7 @@ The [CodeMirror][] library is used for HTML editing.
 
 ## Development
 
-Just run `python server.py`, a trivial local webserver, and browse to http://localhost:8000.
+Just enter the root directory of the repository and run `python server.py`, a trivial local webserver, and browse to http://localhost:8000.
 
   [Hackasaurus]: http://hackasaurus.org
   [interest-based learning]: http://commonspace.wordpress.com/2011/09/27/friends-and-mentors/
