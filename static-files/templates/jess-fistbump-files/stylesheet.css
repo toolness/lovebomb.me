@@ -1,12 +1,12 @@
 @font-face {
-    font-family: 'SFWonderComicRegular';
-    src: url('fonts/SF_Wonder_Comic-webfont.eot');
-    src: url('fonts/SF_Wonder_Comic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/SF_Wonder_Comic-webfont.woff') format('woff'),
-         url('fonts/SF_Wonder_Comic-webfont.ttf') format('truetype'),
-         url('fonts/SF_Wonder_Comic-webfont.svg#SFWonderComicRegular') format('svg');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'SFWonderComicRegular';
+  src: url('fonts/SF_Wonder_Comic-webfont.eot');
+  src: url('fonts/SF_Wonder_Comic-webfont.eot?#iefix') format('embedded-opentype'),
+       url('fonts/SF_Wonder_Comic-webfont.woff') format('woff'),
+       url('fonts/SF_Wonder_Comic-webfont.ttf') format('truetype'),
+       url('fonts/SF_Wonder_Comic-webfont.svg#SFWonderComicRegular') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @media screen and (max-width: 320px) {
