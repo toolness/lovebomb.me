@@ -3,6 +3,7 @@ var Editor = (function() {
   var editor;
   var templateURL;
   var DELAY_MS = 300;
+  var inPositionerReflectionUpdate = false;
 
   function absolutifyURL(relativeURL) {
     var a = $('<a></a>');
@@ -22,10 +23,28 @@ var Editor = (function() {
       var baseTag = previewDocument.createElement('base');
       baseTag.setAttribute('target', '_blank');
       previewDocument.querySelector("head").appendChild(baseTag);
+      
+      (function reflectPositionerCssToDocument() {
+        var iframeWindow = $("#preview")[0].contentWindow;
+
+        iframeWindow.addEventListener("mouseup", function(event) {
+          if (!iframeWindow.Positioner)
+            return;
+          var utils = iframeWindow.Positioner.utils;
+          var rules = utils.makeCssRules();
+          var html = getEditor().getValue();
+          var finalHtml = utils.addOrReplaceStyleHtmlToPage(html, rules);
+          if (finalHtml != html) {
+            inPositionerReflectionUpdate = true;
+            getEditor().setValue(finalHtml);
+            inPositionerReflectionUpdate = false;
+          }
+        }, false);
+      })();
     }
 
     try {
-      update();
+      update();      
     } catch (e) {
       // The user probably clicked on a link in the page and is
       // somewhere else now, so let's reload our blank page.
@@ -56,8 +75,10 @@ var Editor = (function() {
         lineWrapping: true,
         lineNumbers: true,
         onChange: function schedulePreviewRefresh() {
-          clearTimeout(delay);
-          delay = setTimeout(updatePreview, DELAY_MS);
+          if (!inPositionerReflectionUpdate) {
+            clearTimeout(delay);
+            delay = setTimeout(updatePreview, DELAY_MS);
+          }
         }
       });
     return editor;
