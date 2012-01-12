@@ -117,8 +117,9 @@ var Positioner = (function(window) {
     function onMouseUp(event) {
       window.removeEventListener("mouseup", onMouseUp, false);
       window.removeEventListener("mousemove", onMouseMove, false);
-      window.history.pushState({}, "", "?" + makeQueryString() +
-                               window.location.hash);
+      if (window.parent === window)
+        window.history.pushState({}, "", "?" + makeQueryString() +
+                                 window.location.hash);
       event.preventDefault();
       inQuasimode = false;
     }
@@ -247,7 +248,7 @@ var Positioner = (function(window) {
       return '<style id="positioner-data">\n' + rules + '\n</style>';
     },
     addOrReplaceStyleHtmlToPage: function(html, rules) {
-      var styleRe = /\<style id="positioner-data"\>\n(?:.*\n)*\<\/style\>/m;
+      var styleRe = /\<style id="positioner-data"\>\n(?:.*\n)*?\<\/style\>/m;
       var styleMatch = html.match(styleRe);
       if (styleMatch)
         return html.replace(styleRe, utils.makeStyleHtml(rules));
@@ -258,7 +259,8 @@ var Positioner = (function(window) {
                "\n" + html.slice(titleCloseIndex);
       }
       return html + utils.makeStyleHtml(rules);
-    }
+    },
+    makeCssRules: makeCssRules
   };
   
   return {

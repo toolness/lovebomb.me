@@ -74,12 +74,12 @@ test("utils.addOrReplaceStyleHtmlToPage() replaces styles", function() {
   var start = '<!DOCTYPE html>\n<meta charset="utf-8">\n' +
               '<title>My page</title>\n' +
               '<style id="positioner-data">\n#blah {}\n\n/**/\n</style>\n' +
-              '<p>blah</p>';
+              '<style>\n/* other stuff */\n</style>\n<p>blah</p>';
   var rules = '#NEWNEW {}';
   equals(Positioner.utils.addOrReplaceStyleHtmlToPage(start, rules),
          '<!DOCTYPE html>\n<meta charset="utf-8">\n' +
          '<title>My page</title>\n' +
          '<style id="positioner-data">\n#NEWNEW {}\n</style>\n' +
-         '<p>blah</p>');
+         '<style>\n/* other stuff */\n</style>\n<p>blah</p>');
 });
 </script>
