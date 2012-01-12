@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Positioner Unit Tests</title>
+<link rel="stylesheet" href="qunit.css">
+<script src="qunit.js"></script>
+<h1 id="qunit-header">Positioner Unit Tests</h1>
+<h2 id="qunit-banner"></h2>
+<div id="qunit-testrunner-toolbar"></div>
+<h2 id="qunit-userAgent"></h2>
+<ol id="qunit-tests"></ol>
+<div id="qunit-fixture">
+  <div id="sample-css">#beets {
+  position: absolute;
+  top: 10px;
+  left: 30px;
+  width: 100px;
+  height: 100px;
+}</div>
+ <div id="blegh">
+   <p>narg <em>blarg</em> of doom.</p>
+ </div>
+</div>
+<script src="../positioner.js"></script>
+<script>
+module("positioner");
+
+test("Positioner global exists", function() {
+  equal(typeof(Positioner), "object", "Positioner is of type object");
+});
+
+test("utils.parseCss() works", function() {
+  var text = document.getElementById("sample-css").textContent;
+  var rules = Positioner.utils.parseCss(text);
+  var expectedBeets = {"#beets": {
+    position: "absolute", top: "10px", left: "30px",
+    width: "100px", height: "100px"
+  }};
+  deepEqual(rules, expectedBeets);
+  var beets = document.createElement("div");
+  beets.setAttribute("id", "beets");
+  document.body.appendChild(beets);
+  Positioner.utils.applyCss(rules, beets);
+  var cssText = Positioner.utils.makeCss(beets);
+  deepEqual(Positioner.utils.parseCss(cssText), rules);
+  document.body.removeChild(beets);
+});
+
+test("utils.closestElementWithId() works", function() {
+  var em = document.querySelector("#blegh em");
+  var blegh = document.getElementById("blegh");
+  equals(blegh, Positioner.utils.closestElementWithId(em));
+  equals(blegh, Positioner.utils.closestElementWithId(blegh));
+});
+</script>
