@@ -153,9 +153,8 @@ var Positioner = (function(window) {
   
   window.addEventListener("click", function(event) {
     if (event.shiftKey && event.altKey) {
-      var rules = makeCssRules();
       var html = '<!-- Paste this into your HTML. -->\n\n' +
-                 '<style id="positioner-data">\n' + rules + '\n</style>';
+                 utils.makeStyleHtml(makeCssRules());
       var url = 'data:text/plain,' + encodeURIComponent(html);
       window.open(url);
     }
@@ -243,6 +242,22 @@ var Positioner = (function(window) {
           return element;
         element = element.parentNode;
       }
+    },
+    makeStyleHtml: function(rules) {
+      return '<style id="positioner-data">\n' + rules + '\n</style>';
+    },
+    addOrReplaceStyleHtmlToPage: function(html, rules) {
+      var styleRe = /\<style id="positioner-data"\>\n(?:.*\n)*\<\/style\>/m;
+      var styleMatch = html.match(styleRe);
+      if (styleMatch)
+        return html.replace(styleRe, utils.makeStyleHtml(rules));
+      var titleCloseIndex = html.indexOf("</title>\n");
+      if (titleCloseIndex != -1) {
+        titleCloseIndex += "</title>\n".length;
+        return html.slice(0, titleCloseIndex) + utils.makeStyleHtml(rules) +
+               "\n" + html.slice(titleCloseIndex);
+      }
+      return html + utils.makeStyleHtml(rules);
     }
   };
   

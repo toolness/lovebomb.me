@@ -51,4 +51,35 @@ test("utils.closestElementWithId() works", function() {
   equals(blegh, Positioner.utils.closestElementWithId(em));
   equals(blegh, Positioner.utils.closestElementWithId(blegh));
 });
+
+test("utils.addOrReplaceStyleHtmlToPage() works w/ snippet", function() {
+  var start = '<p>hi</p>';
+  var rules = '#blah {}';
+  equals(Positioner.utils.addOrReplaceStyleHtmlToPage(start, rules),
+         '<p>hi</p><style id="positioner-data">\n#blah {}\n</style>');
+});
+
+test("utils.addOrReplaceStyleHtmlToPage() works w/ html page", function() {
+  var start = '<!DOCTYPE html>\n<meta charset="utf-8">\n' +
+              '<title>My page</title>\n<p>blah</p>';
+  var rules = '#flarg {}';
+  equals(Positioner.utils.addOrReplaceStyleHtmlToPage(start, rules),
+         '<!DOCTYPE html>\n<meta charset="utf-8">\n' +
+         '<title>My page</title>\n' +
+         '<style id="positioner-data">\n#flarg {}\n</style>\n' +
+         '<p>blah</p>');
+});
+
+test("utils.addOrReplaceStyleHtmlToPage() replaces styles", function() {
+  var start = '<!DOCTYPE html>\n<meta charset="utf-8">\n' +
+              '<title>My page</title>\n' +
+              '<style id="positioner-data">\n#blah {}\n\n/**/\n</style>\n' +
+              '<p>blah</p>';
+  var rules = '#NEWNEW {}';
+  equals(Positioner.utils.addOrReplaceStyleHtmlToPage(start, rules),
+         '<!DOCTYPE html>\n<meta charset="utf-8">\n' +
+         '<title>My page</title>\n' +
+         '<style id="positioner-data">\n#NEWNEW {}\n</style>\n' +
+         '<p>blah</p>');
+});
 </script>
