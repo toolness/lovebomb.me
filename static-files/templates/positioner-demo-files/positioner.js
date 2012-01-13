@@ -1,4 +1,8 @@
 var Positioner = (function(window) {
+  var inQuasimode = false;
+  var isEnabled = true;
+  var overlay;
+  
   // From http://stevenbenner.com/2010/03/javascript-regex-trick-parse-a-query-string-into-an-object/
   function parseQueryString(str) {
     var queryString = {};
@@ -95,9 +99,7 @@ var Positioner = (function(window) {
     overlay.style.display = "none";
   }
 
-  var inQuasimode = false;
-  
-  window.addEventListener("mousedown", function(event) {
+  function positionOnMouseDown(event) {
     var target = utils.closestElementWithId(event.target);
     
     if (!target)
@@ -150,33 +152,51 @@ var Positioner = (function(window) {
       event.preventDefault();
       inQuasimode = true;
     }
-  }, true);
+  }
   
-  window.addEventListener("click", function(event) {
+  function showCssOnClick(event) {
     if (event.shiftKey && event.altKey) {
       var html = '<!-- Paste this into your HTML. -->\n\n' +
                  utils.makeStyleHtml(makeCssRules());
       var url = 'data:text/plain,' + encodeURIComponent(html);
       window.open(url);
     }
-  }, true);
+  }
+  
   window.addEventListener("DOMContentLoaded", function() {
+    if (!isEnabled)
+      return;
     var styleElement = document.getElementById('positioner-data');
     if (styleElement)
       applyCssRules(styleElement.textContent);
+    initOverlay();
     onQueryStringChange();
+    window.addEventListener("popstate", onQueryStringChange, false);
+    window.addEventListener("click", showCssOnClick, true);
+    window.addEventListener("mousedown", positionOnMouseDown, true);
   }, false);
-  window.addEventListener("popstate", onQueryStringChange, false);
 
-  var overlay = document.createElement("div");
-  document.documentElement.appendChild(overlay);
-  overlay.className = "positioner-overlay";
-  overlay.style.display = "none";
-  overlay.style.position = "absolute";
-  overlay.style.pointerEvents = "none";
-  overlay.style.zIndex = "999999";
-  overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+  function initOverlay() {
+    overlay = document.createElement("div");
+    document.documentElement.appendChild(overlay);
+    overlay.className = "positioner-overlay";
+    overlay.style.display = "none";
+    overlay.style.position = "absolute";
+    overlay.style.pointerEvents = "none";
+    overlay.style.zIndex = "999999";
+    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
 
+    window.addEventListener("mouseover", function(event) {
+      var closest = utils.closestElementWithId(event.target);
+      if (closest)
+        setOverlay(closest);
+    }, false);
+    window.addEventListener("mouseout", function(event) {
+      if (!inQuasimode)
+        overlay.style.display = "none";
+    }, false);
+  }
+  
   function setOverlay(element) {
     var rect = element.getBoundingClientRect();
     overlay.style.top = rect.top + "px";
@@ -185,16 +205,6 @@ var Positioner = (function(window) {
     overlay.style.height = rect.height + "px";
     overlay.style.display = "block";
   }
-
-  window.addEventListener("mouseover", function(event) {
-    var closest = utils.closestElementWithId(event.target);
-    if (closest)
-      setOverlay(closest);
-  }, false);
-  window.addEventListener("mouseout", function(event) {
-    if (!inQuasimode)
-      overlay.style.display = "none";
-  }, false);
 
   var utils = {
     parseCss: function(str) {
@@ -247,23 +257,13 @@ var Positioner = (function(window) {
     makeStyleHtml: function(rules) {
       return '<style id="positioner-data">\n' + rules + '\n</style>';
     },
-    addOrReplaceStyleHtmlToPage: function(html, rules) {
-      var styleRe = /\<style id="positioner-data"\>\n(?:.*\n)*?\<\/style\>/m;
-      var styleMatch = html.match(styleRe);
-      if (styleMatch)
-        return html.replace(styleRe, utils.makeStyleHtml(rules));
-      var titleCloseIndex = html.indexOf("</title>\n");
-      if (titleCloseIndex != -1) {
-        titleCloseIndex += "</title>\n".length;
-        return html.slice(0, titleCloseIndex) + utils.makeStyleHtml(rules) +
-               "\n" + html.slice(titleCloseIndex);
-      }
-      return html + utils.makeStyleHtml(rules);
-    },
     makeCssRules: makeCssRules
   };
   
   return {
-    utils: utils
+    utils: utils,
+    disable: function() {
+      isEnabled = false;
+    }
   };
 })(window);
