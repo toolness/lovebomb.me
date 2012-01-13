@@ -3,7 +3,7 @@ var Editor = (function() {
   var editor;
   var templateURL;
   var DELAY_MS = 300;
-  var inSilentUpdate = false;
+  var nextUpdateIsSilent = false;
   var changeListeners = [];
   
   function absolutifyURL(relativeURL) {
@@ -67,7 +67,9 @@ var Editor = (function() {
         lineWrapping: true,
         lineNumbers: true,
         onChange: function schedulePreviewRefresh() {
-          if (!inSilentUpdate) {
+          if (nextUpdateIsSilent) {
+            nextUpdateIsSilent = false;
+          } else {
             clearTimeout(delay);
             delay = setTimeout(updatePreview, DELAY_MS);
           }
@@ -102,9 +104,8 @@ var Editor = (function() {
     },
     setContentHtml: function(content, options) {
       if (options.silent) {
-        inSilentUpdate = true;
+        nextUpdateIsSilent = true;
         getEditor().setValue(content);
-        inSilentUpdate = false;
       } else
         getEditor.setValue(content);
     },
