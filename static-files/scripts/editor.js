@@ -4,6 +4,7 @@ var Editor = (function() {
   var templateURL;
   var DELAY_MS = 300;
   var nextUpdateIsSilent = false;
+  var nextUpdateIsInstant = false;
   var changeListeners = [];
   
   function absolutifyURL(relativeURL) {
@@ -71,7 +72,11 @@ var Editor = (function() {
             nextUpdateIsSilent = false;
           } else {
             clearTimeout(delay);
-            delay = setTimeout(updatePreview, DELAY_MS);
+            if (nextUpdateIsInstant) {
+              nextUpdateIsInstant = false;
+              updatePreview();
+            } else
+              delay = setTimeout(updatePreview, DELAY_MS);
           }
         }
       });
@@ -79,8 +84,8 @@ var Editor = (function() {
   }
   
   return {
-    undo: function() { getEditor().undo(); },
-    redo: function() { getEditor().redo(); },
+    undo: function() { nextUpdateIsInstant = true; getEditor().undo(); },
+    redo: function() { nextUpdateIsInstant = true; getEditor().redo(); },
     remix: function(url) {
       var iframe = $('<iframe></iframe>').attr("src", url)
         .appendTo(document.body).hide();
@@ -121,8 +126,8 @@ var Editor = (function() {
         templateURL = newTemplateURL;
         var req = jQuery.get(templateURL, undefined, 'text');
         jQuery.when(req).done(function(data) {
+          nextUpdateIsInstant = true;
           getEditor().setValue(mungeTemplate(data, id));
-          updatePreview();
         });
       }
     }
