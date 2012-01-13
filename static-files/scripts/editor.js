@@ -3,8 +3,9 @@ var Editor = (function() {
   var editor;
   var templateURL;
   var DELAY_MS = 300;
-  var inPositionerReflectionUpdate = false;
-
+  var inSilentUpdate = false;
+  var changeListeners = [];
+  
   function absolutifyURL(relativeURL) {
     var a = $('<a></a>');
     a.attr("href", relativeURL);
@@ -24,23 +25,14 @@ var Editor = (function() {
       baseTag.setAttribute('target', '_blank');
       previewDocument.querySelector("head").appendChild(baseTag);
       
-      (function reflectPositionerCssToDocument() {
-        var iframeWindow = $("#preview")[0].contentWindow;
-
-        iframeWindow.addEventListener("mouseup", function(event) {
-          if (!iframeWindow.Positioner)
-            return;
-          var utils = iframeWindow.Positioner.utils;
-          var rules = utils.makeCssRules();
-          var html = getEditor().getValue();
-          var finalHtml = utils.addOrReplaceStyleHtmlToPage(html, rules);
-          if (finalHtml != html) {
-            inPositionerReflectionUpdate = true;
-            getEditor().setValue(finalHtml);
-            inPositionerReflectionUpdate = false;
-          }
-        }, false);
-      })();
+      jQuery.each(changeListeners, function() {
+        try {
+          this();
+        } catch (e) {
+          if (window.console && window.console.error)
+            window.console.error(e);
+        }
+      });
     }
 
     try {
@@ -75,7 +67,7 @@ var Editor = (function() {
         lineWrapping: true,
         lineNumbers: true,
         onChange: function schedulePreviewRefresh() {
-          if (!inPositionerReflectionUpdate) {
+          if (!inSilentUpdate) {
             clearTimeout(delay);
             delay = setTimeout(updatePreview, DELAY_MS);
           }
@@ -107,6 +99,20 @@ var Editor = (function() {
         html: getEditor().getValue(),
         templateURL: templateURL
       };
+    },
+    setContentHtml: function(content, options) {
+      if (options.silent) {
+        inSilentUpdate = true;
+        getEditor().setValue(content);
+        inSilentUpdate = false;
+      } else
+        getEditor.setValue(content);
+    },
+    getPreviewWindow: function() {
+      return $("#preview")[0].contentWindow;
+    },
+    onChange: function(cb) {
+      changeListeners.push(cb);
     },
     loadTemplate: function(id) {
       var newTemplateURL = absolutifyURL('templates/' + id + '.html');
