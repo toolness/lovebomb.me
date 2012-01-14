@@ -20,6 +20,8 @@
    <p>narg <em>blarg</em> of doom.</p>
  </div>
 </div>
+<script src="codemirror2/lib/codemirror.js"></script>
+<script src="codemirror2/mode/css/css.js"></script>
 <script src="../positioner.js"></script>
 <script src="../positioner-reflection.js"></script>
 <script>
@@ -73,16 +75,51 @@ test("PositionerReflection.updateHtml() works w/ html page", function() {
          '<p>blah</p>');
 });
 
-test("PositionerReflection.updateHtml() replaces styles", function() {
+test("PositionerReflection.updateHtml() merges disjoint styles", function() {
   var start = '<!DOCTYPE html>\n<meta charset="utf-8">\n' +
               '<title>My page</title>\n' +
               '<style id="positioner-data">\n#blah {}\n\n/**/\n</style>\n' +
               '<style>\n/* other stuff */\n</style>\n<p>blah</p>';
-  var rules = '#NEWNEW {}';
+  var rules = '#NEWNEW { top: 10px }';
   equals(PositionerReflection.updateHtml(start, rules),
          '<!DOCTYPE html>\n<meta charset="utf-8">\n' +
          '<title>My page</title>\n' +
-         '<style id="positioner-data">\n#NEWNEW {}\n</style>\n' +
+         '<style id="positioner-data">\n' +
+         '#blah {}\n\n/**/\n#NEWNEW { top: 10px }\n</style>\n' +
          '<style>\n/* other stuff */\n</style>\n<p>blah</p>');
+});
+
+test("PositionerReflection.updateHtml() updates existing styles", function() {
+  var start = '<!DOCTYPE html>\n<meta charset="utf-8">\n' +
+              '<title>My page</title>\n' +
+              '<style id="positioner-data">' +
+              '\n#blah { position: absolute; top: 10px; }\n</style>\n' +
+              '<style>\n/* other stuff */\n</style>\n<p>blah</p>';
+  var rules = '#blah { position: absolute; top: 20px; }';
+  equals(PositionerReflection.updateHtml(start, rules),
+         '<!DOCTYPE html>\n<meta charset="utf-8">\n' +
+         '<title>My page</title>\n' +
+         '<style id="positioner-data">\n' +
+         '#blah { position: absolute; top: 20px; }\n</style>\n' +
+         '<style>\n/* other stuff */\n</style>\n<p>blah</p>');
+});
+
+test("PositionerReflection.mergeCss() preserves declarations", function() {
+  equals(PositionerReflection.mergeCss(
+    '#foo {top: 10px; background: yellow; width: 5px}\n',
+    '#foo {top: 10px; width: 6px}\n'),
+    '#foo {top: 10px; background: yellow; width: 6px}');
+
+  equals(PositionerReflection.mergeCss(
+    '#foo {top: 10px; \nbackground: yellow; width: 5px}\n',
+    '#foo {top: 10px; width: 6px}\n'),
+    '#foo {top: 10px; \nbackground: yellow; width: 6px}');
+});
+
+test("PositionerReflection.mergeCss() adds new declarations", function() {
+  equals(PositionerReflection.mergeCss(
+    '#foo {top: 10px}\n',
+    '#foo {width: 5px}\n'),
+    '#foo {top: 10px; width: 5px }');
 });
 </script>
