@@ -1,4 +1,6 @@
 var PositionerReflection = (function(Positioner, CodeMirror, Editor) {
+  var REFLECT_DELAY_MS = 10;
+  var reflectDelay = null;
   var utils = Positioner.utils;
   var self = {
     mergeCss: function(oldCss, newCss) {
@@ -91,7 +93,7 @@ var PositionerReflection = (function(Positioner, CodeMirror, Editor) {
     Editor.onChange(function() {
       var iframeWindow = Editor.getPreviewWindow();
 
-      iframeWindow.addEventListener("mouseup", function(event) {
+      function reflect() {
         if (!iframeWindow.Positioner)
           return;
         var rules = iframeWindow.Positioner.utils.makeCssRules();
@@ -99,6 +101,14 @@ var PositionerReflection = (function(Positioner, CodeMirror, Editor) {
         var finalHtml = self.updateHtml(html, rules);
         if (finalHtml != html)
           Editor.setContentHtml(finalHtml, {silent: true});
+      }
+      
+      iframeWindow.addEventListener("mousemove", function() {
+        if (iframeWindow.Positioner &&
+            iframeWindow.Positioner.isInQuasimode()) {
+          clearTimeout(reflectDelay);
+          reflectDelay = setTimeout(reflect, REFLECT_DELAY_MS);
+        }
       }, false);
     });
 

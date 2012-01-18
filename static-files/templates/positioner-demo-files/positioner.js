@@ -264,6 +264,9 @@ var Positioner = (function(window) {
     utils: utils,
     disable: function() {
       isEnabled = false;
+    },
+    isInQuasimode: function() {
+      return inQuasimode;
     }
   };
 })(window);
