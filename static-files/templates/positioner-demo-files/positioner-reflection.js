@@ -15,7 +15,13 @@ var PositionerReflection = (function(Positioner, CodeMirror, Editor) {
       var mergedCssLines = [];
       var currentSelector = null;
       var currentDeclaration = null;
-      oldCss.slice(0, -1).split('\n').forEach(function(line) {
+      
+      if (oldCss.charAt(0) == "\n")
+        oldCss = oldCss.slice(1);
+      if (oldCss.charAt(oldCss.length - 1) == "\n")
+        oldCss = oldCss.slice(0, -1);
+
+      oldCss.split('\n').forEach(function(line) {
         var stream = new CodeMirror.StringStream(line);
         var lastPos = 0;
         var lineParts = [];
@@ -67,7 +73,7 @@ var PositionerReflection = (function(Positioner, CodeMirror, Editor) {
       return mergedCssLines.join('\n');
     },
     updateHtml: function(html, rules) {
-      var styleRe = /\<style id="positioner-data"\>\n((?:.*\n)*?)\<\/style\>/m;
+      var styleRe = /\<style id="positioner-data"\>((?:.*\n?)*?)\<\/style\>/m;
       var styleMatch = html.match(styleRe);
       if (styleMatch) {
         var newRules = self.mergeCss(styleMatch[1], rules);

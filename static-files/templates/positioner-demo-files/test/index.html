@@ -104,6 +104,15 @@ test("PositionerReflection.updateHtml() updates existing styles", function() {
          '<style>\n/* other stuff */\n</style>\n<p>blah</p>');
 });
 
+test("PositionerReflection.updateHtml() works on style content that " +
+     "doesn't begin/end with newlines", function() {
+  var start = '<style id="positioner-data">#foo {}</style><p>blah</p>';
+  var rules = '#blah { top: 1px }';
+  equals(PositionerReflection.updateHtml(start, rules),
+         '<style id="positioner-data">\n#foo {}\n' +
+         '#blah { top: 1px }\n</style><p>blah</p>');
+});
+
 test("PositionerReflection.mergeCss() preserves declarations", function() {
   equals(PositionerReflection.mergeCss(
     '#foo {top: 10px; background: yellow; width: 5px}\n',
