@@ -15,11 +15,6 @@ var PositionerReflection = (function(Positioner, CodeMirror, Editor) {
       var mergedCssLines = [];
       var currentSelector = null;
       var currentDeclaration = null;
-      
-      if (oldCss.charAt(0) == "\n")
-        oldCss = oldCss.slice(1);
-      if (oldCss.charAt(oldCss.length - 1) == "\n")
-        oldCss = oldCss.slice(0, -1);
 
       oldCss.split('\n').forEach(function(line) {
         var stream = new CodeMirror.StringStream(line);
@@ -76,7 +71,7 @@ var PositionerReflection = (function(Positioner, CodeMirror, Editor) {
       var styleRe = /\<style id="positioner-data"\>((?:.*\n?)*?)\<\/style\>/m;
       var styleMatch = html.match(styleRe);
       if (styleMatch) {
-        var newRules = self.mergeCss(styleMatch[1], rules);
+        var newRules = self.mergeCss(styleMatch[1].trim(), rules);
         return html.replace(styleRe, utils.makeStyleHtml(newRules));
       }
       var titleCloseIndex = html.indexOf("</title>\n");
