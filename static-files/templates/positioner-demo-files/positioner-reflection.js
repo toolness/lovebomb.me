@@ -70,16 +70,19 @@ var PositionerReflection = (function(Positioner, CodeMirror, Editor) {
     updateHtml: function(html, rules) {
       var styleRe = /\<\s*style\s+id="positioner-data"\s*\>((?:.*\n?)*?)\<\/\s*style\s*\>/mi;
       var styleMatch = html.match(styleRe);
+      var titleCloseRe = /(\<\/\s*title\s*\>)/i;
+      var titleFound = false;
+
       if (styleMatch) {
         var newRules = self.mergeCss(styleMatch[1].trim(), rules);
         return html.replace(styleRe, utils.makeStyleHtml(newRules));
       }
-      var titleCloseIndex = html.indexOf("</title>\n");
-      if (titleCloseIndex != -1) {
-        titleCloseIndex += "</title>\n".length;
-        return html.slice(0, titleCloseIndex) + utils.makeStyleHtml(rules) +
-               "\n" + html.slice(titleCloseIndex);
-      }
+      html = html.replace(titleCloseRe, function($0, $1) {
+        titleFound = true;
+        return $1 + '\n' + utils.makeStyleHtml(rules);
+      });
+      if (titleFound)
+        return html;
       return html + utils.makeStyleHtml(rules);
     }
   };
