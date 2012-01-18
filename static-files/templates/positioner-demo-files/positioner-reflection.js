@@ -68,7 +68,7 @@ var PositionerReflection = (function(Positioner, CodeMirror, Editor) {
       return mergedCssLines.join('\n');
     },
     updateHtml: function(html, rules) {
-      var styleRe = /\<style id="positioner-data"\>((?:.*\n?)*?)\<\/style\>/m;
+      var styleRe = /\<\s*style\s+id="positioner-data"\s*\>((?:.*\n?)*?)\<\/\s*style\s*\>/mi;
       var styleMatch = html.match(styleRe);
       if (styleMatch) {
         var newRules = self.mergeCss(styleMatch[1].trim(), rules);
