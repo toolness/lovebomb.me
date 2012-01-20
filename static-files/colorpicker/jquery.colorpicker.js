@@ -412,7 +412,7 @@
 		_loadColor: function () {
 			if(!this.color) {
 				var rgb = this._parseColor(this.options.color);
-				this.color = (rgb === false ? new this.Color() : new this.Color(rgb[0], rgb[1], rgb[2]));
+				this.color = (rgb === false ? new this.Color() : new this.Color(rgb[0], rgb[1], rgb[2], rgb[3]));
 				this.color_none = (rgb === false);
 				this.currentColor = $.extend({}, this.color);
 			}
@@ -657,7 +657,7 @@
 		setColor: function(c) {
 			var rgb = this._parseColor(c);
 			if (rgb !== false) {
-				this.color = new this.Color(rgb[0], rgb[1], rgb[2]);
+				this.color = new this.Color(rgb[0], rgb[1], rgb[2], rgb[3]);
 				this.color_none = false;
 				this.currentColor = $.extend({}, this.color);
 				this._change();
@@ -1447,7 +1447,7 @@
 
 					$('.ui-colorpicker-swatch', e).click(function () {
 						var rgb		= inst._parseColor($(this).css('background-color'));
-						inst.color	= (rgb === false ? new inst.Color() : new inst.Color(rgb[0], rgb[1], rgb[2]));
+						inst.color	= (rgb === false ? new inst.Color() : new inst.Color(rgb[0], rgb[1], rgb[2], rgb[3]));
 						inst._change();
 					});
 				};
@@ -1538,7 +1538,7 @@
 					m[1] / 255,
 					m[2] / 255,
 					m[3] / 255,
-					m[4] / 255
+					m[4]
 				];
 			}
 
@@ -1713,12 +1713,12 @@
 				this.h = 0;
 				this.s = 0;
 				this.v = 0;
-			} else if (args.length === 3) {
-				// r,g,b
+			} else if (args.length === 3 || args.length === 4) {
+				// r,g,b or r,g,b,a
 				this.r = args[0] || 0;
 				this.g = args[1] || 0;
 				this.b = args[2] || 0;
-				this.a = 1;
+				this.a = (typeof(args[3]) === "number" && !isNaN(args[3])) ? args[3] : 1;
 				this.updateHSV();
 			} else if (args.length === 7) {
 				// r,g,b,a,h,s,v
