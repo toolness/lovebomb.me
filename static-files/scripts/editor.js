@@ -59,7 +59,7 @@ var Editor = (function() {
 
   var picker = null;
   var pickerPos = null;
-  var inCursorActivity = false;
+  var inPickerOnSelect = false;
   var inManualColorChange = false;
   
   function removePicker() {
@@ -83,7 +83,7 @@ var Editor = (function() {
         lineWrapping: true,
         lineNumbers: true,
         onCursorActivity: function() {
-          if (inCursorActivity)
+          if (inPickerOnSelect)
             return;
           var pos = editor.getCursor();
           var token = editor.getTokenAt(pos);
@@ -161,7 +161,7 @@ var Editor = (function() {
                                     Math.floor(rgba.b * 255) + ', ' +
                                     rgba.a.toFixed(3)  + ')';
                 }
-                inCursorActivity = true;
+                inPickerOnSelect = true;
                 editor.replaceRange(value, {
                   line: pos.line,
                   ch: tokensStart + 1
@@ -170,7 +170,7 @@ var Editor = (function() {
                   ch: tokensEnd
                 });
                 tokensEnd = tokensStart + 1 + value.length;
-                inCursorActivity = false;
+                inPickerOnSelect = false;
               }
             });
             editor.addWidget({
