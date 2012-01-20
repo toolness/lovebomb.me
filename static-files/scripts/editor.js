@@ -60,6 +60,7 @@ var Editor = (function() {
   var picker = null;
   var pickerPos = null;
   var inCursorActivity = false;
+  var inManualColorChange = false;
   
   function removePicker() {
     if (picker) {
@@ -128,17 +129,28 @@ var Editor = (function() {
               return t.string
             }).join("").trim();
             if (pickerPos && pickerPos.line == pos.line &&
-                pickerPos.ch == tokensStart)
+                pickerPos.ch == tokensStart) {
+              if (pickerPos.lastValue != cssValue) {
+                inManualColorChange = true;
+                picker.colorpicker("setColor", cssValue);
+                inManualColorChange = false;
+                pickerPos.lastValue = cssValue;
+              }
               return;
+            }
             removePicker();
-            pickerPos = {line: pos.line, ch: tokensStart};
+            pickerPos = {
+              line: pos.line,
+              ch: tokensStart,
+              lastValue: cssValue
+            };
             //console.log("cssValue is", cssValue);
             picker = $('<div class="picker"></div>').appendTo(document.body);
             picker.colorpicker({
               alpha: true,
               color: cssValue,
               onSelect: function(hex, rgba, inst) {
-                if (!pickerPos)
+                if (!pickerPos || inManualColorChange)
                   return;
                 var value;
                 if (rgba.a == 1) {
