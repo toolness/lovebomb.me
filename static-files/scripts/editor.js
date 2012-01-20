@@ -159,7 +159,7 @@ var Editor = (function() {
                   value = 'rgba(' + Math.floor(rgba.r * 255) + ', ' +
                                     Math.floor(rgba.g * 255) + ', ' +
                                     Math.floor(rgba.b * 255) + ', ' +
-                                    rgba.a + ')';
+                                    rgba.a.toFixed(3)  + ')';
                 }
                 inCursorActivity = true;
                 editor.replaceRange(value, {
