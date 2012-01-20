@@ -197,8 +197,14 @@
 			'Crimson': [0xDC, 0x14, 0x3C],
 			'Pink': [0xFF, 0xC0, 0xCB],
 			'LightPink': [0xFF, 0xB6, 0xC1]
-		};
+		},
 
+		_lowerColors = {};
+
+	for (var colorName in _colors) {
+		_lowerColors[colorName.toLowerCase()] = _colors[colorName];
+	}
+  
 	$.widget("vanderlee.colorpicker", {
 		options: {
 			alpha:				false,		// Show alpha controls and mode
@@ -1513,8 +1519,8 @@
 				c,
 				m;
 
-			if (_colors[name]) {
-				c = _colors[name];
+			if (_lowerColors[name]) {
+				c = _lowerColors[name];
 				return [c[0] / 255, c[1] / 255, c[2] / 255];
 			}
 
