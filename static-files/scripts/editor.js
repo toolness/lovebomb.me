@@ -57,6 +57,11 @@ var Editor = (function() {
     return html;
   }
 
+  var PICKER_CSS_PROPERTIES = [
+    "background",
+    "background-color",
+    "color"
+  ];
   var picker = null;
   var pickerPos = null;
   var inPickerOnSelect = false;
@@ -118,6 +123,17 @@ var Editor = (function() {
               prevToken();
             }
             nextToken();
+
+            var tokenValueStart = token;
+            while (token.start != 0 && token.className != "variable")
+              prevToken();
+            var prop = (token.className == "variable") ? token.string : "";
+            if (PICKER_CSS_PROPERTIES.indexOf(prop) == -1) {
+              removePicker();
+              return;
+            }
+            token = tokenValueStart;
+            
             var tokens = [token];
             var tokensStart = token.start;
             var tokensEnd = token.end;
