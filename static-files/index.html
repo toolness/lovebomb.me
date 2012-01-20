@@ -10,6 +10,24 @@
     <link rel="stylesheet" href="stylesheets/publish.css">
     <link rel="stylesheet" href="codemirror2/lib/codemirror.css">
     <link rel="stylesheet" href="stylesheets/jsbin-codemirror-theme.css">
+
+    <link rel="stylesheet" href="colorpicker/jquery.colorpicker.css">
+    <style>
+    .picker {
+      position: absolute;
+    }
+    
+    .picker .ui-colorpicker-border {
+      border: 1px solid black;
+    }
+    
+    .picker .ui-dialog {
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.75);
+      color: white;
+      font-size: small;
+    }
+    </style>
   </head>
   <body>
     <header>
@@ -61,7 +79,7 @@
         </div>
       </div>
     </div>
-    <footer>This app is a <a href="http://hackasaurus.org/">Hackasaurus</a> experiment created by <a href="http://twitter.com/iamjessklein">@iamjessklein</a> and <a href="http://twitter.com/toolness">@toolness</a> in 2011.</footer>
+    <footer>This app is a <a href="http://hackasaurus.org/">Hackasaurus</a> experiment created by <a href="http://twitter.com/iamjessklein">@iamjessklein</a> and <a href="http://twitter.com/toolness">@toolness</a> in 2011.</footer>    
     <script src="scripts/jquery.min.js"></script>
     <script src="scripts/yepnope.1.0.2-min.js"></script>
     <script src="codemirror2/lib/codemirror.js"></script>
@@ -79,5 +97,8 @@
     <script src="templates/positioner-demo-files/positioner.js"></script>
     <script src="templates/positioner-demo-files/positioner-reflection.js"></script>
     <script>Positioner.disable();</script>
+    
+    <script src="scripts/jquery-ui-1.8.17.custom.min.js"></script>
+    <script src="colorpicker/jquery.colorpicker.js"></script>
   </body>
 </html>
