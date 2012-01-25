@@ -13,11 +13,58 @@
 
     <link rel="stylesheet" href="colorpicker/jquery.colorpicker.css">
     <link rel="stylesheet" href="stylesheets/colorpicker.css">
+    <style>
+    .image-picker {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      right: 0px;
+      bottom: 0px;
+      background: rgba(0, 0, 0, 0.25);
+    }
+    
+    .image-picker .inset {
+      position: absolute;
+      top: 10%;
+      left: 10%;
+      right: 10%;
+      bottom: 10%;
+      padding: 30px;
+      background: rgba(0, 0, 0, 0.75);
+      color: white;
+      border-radius: 10px;
+    }
+    
+    .image-picker input {
+      border: 1px solid gray;
+      background: rgba(255, 255, 255, 0.75);
+      color: black;
+      padding: 4px;
+      font-family: inherit;
+      font-size: inherit;
+      width: 100%;
+    }
+    
+    .image-picker ul.results {
+      list-style-type: none;
+      padding-left: 0px;
+    }
+
+    .image-picker ul.results li {
+      display: inline;
+      padding-left: 0px;
+    }
+    
+    .image-picker ul.results li img {
+      cursor: pointer;
+    }
+    </style>
   </head>
   <body>
     <header>
       <a href="#"><h1><span class="logo">Love Bomb</span> Builder</h1></a>
       <div class="editor-actions">
+        <button id="image-picker">Image Picker</button>
         <button id="undo">Undo</button>
         <button id="redo">Redo</button>
         <button id="publish">Publish</button>
@@ -65,6 +112,13 @@
       </div>
     </div>
     <footer>This app is a <a href="http://hackasaurus.org/">Hackasaurus</a> experiment created by <a href="http://twitter.com/iamjessklein">@iamjessklein</a> and <a href="http://twitter.com/toolness">@toolness</a> in 2011.</footer>    
+    <div class="image-picker" style="display: none">
+      <div class="inset">
+        <p>Enter a search term below and click on an image to insert its URL into your page.</p>
+        <input type="text">
+        <ul class="results"></ul>
+      </div>
+    </div>
     <script src="scripts/jquery.min.js"></script>
     <script src="scripts/yepnope.1.0.2-min.js"></script>
     <script src="codemirror2/lib/codemirror.js"></script>
@@ -86,5 +140,6 @@
     <script src="scripts/jquery-ui-1.8.17.custom.min.js"></script>
     <script src="colorpicker/jquery.colorpicker.js"></script>
     <script src="scripts/colorpicker.js"></script>
+    <script src="scripts/imagepicker.js"></script>
   </body>
 </html>

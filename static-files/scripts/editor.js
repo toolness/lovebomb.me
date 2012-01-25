@@ -118,6 +118,19 @@ var Editor = (function() {
         templateURL: templateURL
       };
     },
+    insertContent: function(content) {
+      if (editor.somethingSelected()) {
+        editor.replaceSelection(content);
+      } else {
+        var pos = editor.getCursor();
+        editor.replaceRange(content, pos);
+        editor.setSelection(pos, {
+          line: pos.line,
+          ch: pos.ch + content.length
+        });
+      }
+      editor.focus();
+    },
     setContentHtml: function(content, options) {
       if (options.silent) {
         nextUpdateIsSilent = true;
