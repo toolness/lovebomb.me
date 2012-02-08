@@ -31,7 +31,8 @@
           complete: function() {
             $("section#chooser img.big-throbber").hide();
             req = null;
-          }
+          },
+          timeout: 10000
         });
       }
     }, 100);
