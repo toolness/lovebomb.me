@@ -16,6 +16,10 @@ var Editor = (function() {
 
   function updatePreview() {
     function update() {
+      if (templateURL == "custom") {
+        window.localStorage['customHtml'] = editor.getValue();
+      }
+      
       var previewDocument = $("#preview").contents()[0];
       previewDocument.open();
       previewDocument.write(editor.getValue());
@@ -135,6 +139,15 @@ var Editor = (function() {
       cursorActivityListeners.push(cb);
     },
     loadTemplate: function(id) {
+      if (id == "custom") {
+        setTimeout(function() {
+          console.log("custom", window.localStorage['customHtml']);
+          nextUpdateIsInstant = true;
+          templateURL = "custom";
+          getEditor().setValue(window.localStorage['customHtml']);
+        }, 100);
+        return;
+      }
       var newTemplateURL = absolutifyURL('templates/' + id + '.html');
       if (newTemplateURL != templateURL) {
         templateURL = newTemplateURL;

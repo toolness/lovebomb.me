@@ -16,7 +16,7 @@
   </head>
   <body>
     <header>
-      <a href="#"><h1><span class="logo">Love Bomb</span> Builder</h1></a>
+      <a href="#"><h1><span class="logo">Journalism</span> Thing</h1></a>
       <div class="editor-actions">
         <button id="undo">Undo</button>
         <button id="redo">Redo</button>
@@ -27,20 +27,18 @@
       <div class="wrapper">
         <img src="images/lovebomb-person.svg" class="lovebomb-person">
         <div class="details">
-          <h2>Send Your Friends A Love Bomb</h2>
-          <aside>Tell your buddies that you think they rock, are awesome and deserve a big ol’ love bomb.</aside>
+          <h2>Send Your Friends A Thing</h2>
+          <aside>Learn HTML and CSS by webifying a story, blog post, essay, or other online composition.</aside>
           <a href="#chooser" class="button">Get Started</a>
         </div>
       </div>
     </section>
     <section id="chooser" class="out-on-right">
       <div class="wrapper">
-        <h2>Choose A Template</h2>
-        <ul class="templates">
-          <li><a href="#editor.atul">Bomb</a>
-          <li><a href="#editor.jess-fistbump">Fist Bump</a>
-          <li><a href="#editor.jess-mask">Mask</a>
-        </ul>
+        <h2>Enter a URL</h2>
+        <p>Paste the URL of a story or article below, and we'll help you webify it.</p>
+        <input type="text" id="url" autocomplete="off"><img src="images/ajax-loader-big.gif" class="big-throbber" style="display: none;">
+        <p class="error result" style="display: none">An error occurred. Either we messed up, or your URL is bogus.</p>
       </div>
     </section>
     <section id="editor" class="out-on-right">
