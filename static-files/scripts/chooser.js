@@ -1,6 +1,6 @@
 (function(jQuery) {
-  //var BASE_URL = "http://bjb.io:9123/";
-  var BASE_URL = "http://localhost:8080/";
+  var BASE_URL = "http://bjb.io:9123/";
+  //var BASE_URL = "http://localhost:8080/";
   $(window).ready(function() {
     var val = "";
     var req = null;
