@@ -6,7 +6,11 @@
     var req = null;
     setInterval(function() {
       var newVal = $("section#chooser input").val();
-      if (newVal.trim().length && val != newVal) {
+      if (newVal.trim().length == 0) {
+        val = "";
+        return;
+      }
+      if (val != newVal) {
         val = newVal;
         $("section#chooser img.big-throbber").show();
         $("section#chooser .result").hide();
@@ -18,15 +22,20 @@
             url: val,
           },
           success: function(data) {
-            console.log("success", data);
-            window.localStorage['customHtml'] = data.trim();
-            window.location.hash = "#editor.custom";
+            data = data.trim();
+            if (data.length == 0) {
+              $("section#chooser .error.result").fadeIn();
+            } else {
+              //console.log("success", data);
+              window.localStorage['customHtml'] = data.trim();
+              window.location.hash = "#editor.custom";
+            }
           },
           error: function(jqXHR, textStatus) {
             if (textStatus == "abort")
               return;
             $("section#chooser .error.result").fadeIn();
-            console.log("error", textStatus);
+            //console.log("error", textStatus);
           },
           complete: function() {
             $("section#chooser img.big-throbber").hide();
@@ -38,6 +47,7 @@
     }, 100);
     
     $("#use-default-article").click(function() {
+      val = "";
       $('section#chooser input').val('http://www.toolness.com/wp/2011/06/moving-at-internet-speed/');
       return false;
     });
