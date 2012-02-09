@@ -41,4 +41,25 @@ $(window).load(function() {
   $("#redo").click(function() { Editor.redo(); });
   Navigation.init();
   Publish.init();
+  
+  jQuery.ajax({
+    type: 'GET',
+    url: "http://etherpad-export.appspot.com/",
+    data: {
+      server: "etherpad.mozilla.org",
+      port: "80",
+      pad: "opennews-webmaking101-copywriting-html",
+      format: "txt"
+    },
+    dataType: "text",
+    crossDomain: true,
+    success: function(data) {
+      $("#instructions").html(data);
+    },
+    error: function(jqXHR, status) {
+      $("#instructions").text("ERROR: " + status + " " + jqXHR.status +
+                              " " + jqXHR.responseText);
+    }
+  });
+  
 });
