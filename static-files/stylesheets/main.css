@@ -39,31 +39,32 @@ body {
 }
 
 header {
-  height: 100px;
+  height: 65px;
   overflow: hidden;
   -moz-transition: height 0.25s;
   -webkit-transition: height 0.25s;
 }
 
 section {
-  top: 100px;
+  top: 65px;
 }
 
 header.section-editor {
-  height: 250px;
+  height: 200px;
 }
 
 section#editor {
-  top: 250px;
+  top: 200px;
 }
 
 #instructions {
   position: absolute;
-  top: 100px;
+  top: 65px;
   width: 100%;
-  height: 150px;
+  height: 115px;
   padding: 10px;
   overflow: auto;
+  background: yellow;
 }
 
 #instructions blockquote, #instructions code {
@@ -82,7 +83,7 @@ header h1 {
   font-family: 'BebasRegular';
   font-weight: normal;
   position: absolute;
-  top: 30px;
+  top: 10px;
   left: 20px;
   margin: 0px;
 }
@@ -93,9 +94,7 @@ header a {
 }
 
 header h1 span.logo {
-  font-family: 'TrashHandRegular';
-  font-size: 50px;
-  padding-right: 10px;
+  font-family: 'BebasRegular';
   color: white;
 }
 
@@ -165,7 +164,7 @@ header.section-editor div.editor-actions {
 header div.editor-actions {
   position: absolute;
   right: 20px;
-  top: 20px;
+  top: 10px;
   opacity: 0;
   visibility: hidden;
   -moz-transition: opacity 1s;
@@ -180,12 +179,12 @@ header button {
 
 button, a.button {
   font-family: 'BebasRegular';
-  font-size: 30px;
+  font-size: 25px;
   display: inline-block;
   text-align: center;
   text-decoration: none;
-  padding: 10px;
-  border-radius: 10px;
+  padding: 5px;
+  border-radius: 5px;
   border: none;
   cursor: pointer;
   color: white;
