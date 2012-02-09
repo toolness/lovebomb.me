@@ -68,11 +68,6 @@ section#editor {
   background: yellow;
 }
 
-#instructions blockquote, #instructions code {
-  font-family: Monaco, "Lucida Console", monospace;
-  font-size: smaller;
-}
-
 header {
   background-color: #0166ff;
   position: relative;
