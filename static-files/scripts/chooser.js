@@ -36,5 +36,10 @@
         });
       }
     }, 100);
+    
+    $("#use-default-article").click(function() {
+      $('section#chooser input').val('http://www.toolness.com/wp/2011/06/moving-at-internet-speed/');
+      return false;
+    });
   });
 })(jQuery);
