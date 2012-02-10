@@ -40,8 +40,10 @@ $(window).load(function() {
   $("#undo").click(function() { Editor.undo(); });
   $("#redo").click(function() { Editor.redo(); });
   Navigation.init();
-  Publish.init();
-  
+  Publish.init();  
+});
+
+$(window).ready(function() {
   jQuery.ajax({
     type: 'GET',
     url: "http://etherpad-export.appspot.com/",
@@ -61,5 +63,4 @@ $(window).load(function() {
                               " " + jqXHR.responseText);
     }
   });
-  
 });
