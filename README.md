@@ -22,6 +22,16 @@ The [CodeMirror][] library is used for HTML editing.
 
 5. The template only needs to render properly on the latest versions of Opera, Firefox, Chrome, Safari, and Internet Explorer. Don't worry about e.g. IE8, as supporting such browsers usually means adding shims or browser-specific logic that will confuse newcomers.
 
+## Adding New Templates
+
+1. Come up with an identifier for your template. It should preferably only consist of letters, digits, and dashes. For the rest of these instructions, we'll assume you're using the identifier `hai2u`.
+
+2. Create `static-files/templates/hai2u.html`. This will be the HTML that users are given when they decide to use your template.
+
+3. Create a new directory called `static-files/templates/hai2u-files`. Put any extra resources (images, CSS, JS, etc) for your template in here (subdirectories are fine). When referring to any of these resources from `hai2u.html`, make sure you use relative URLs; for example, an image might be referred to as `<img src="hai2u-files/image.png">`.
+
+4. In `static-files/index.html`, add a list item containing a link to `#editor.hai2u` under `<ul class="templates">`. This will show your template in the list of available templates, and allow the user to click on your template to use it.
+
 ## Development
 
 Just enter the root directory of the repository and run `python server.py`, a trivial local webserver, and browse to http://localhost:8000.
