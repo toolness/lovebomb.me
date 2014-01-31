@@ -1,7 +1,7 @@
 var Publish = (function() {
   // Originally taken from https://github.com/hackasaurus/webxray/blob/master/static-files/uproot-dialog.html
 
-  var hackpubURL = "http://hackpub.hackasaurus.org/buckets/lovebomb/";
+  var hackpubURL = "http://hackpub.herokuapp.com/buckets/lovebomb/";
   var ppxURL = "http://toolness.github.com/postmessage-proxied-xhr/";
   
   yepnope({
